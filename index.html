@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформление работы — Satbayev University</title>
+    <style>
+:root { --accent:#ef3838; --ink:#182132; --muted:#647084; --border:#dce2ea; --paper:#fff; --canvas:#edf0f5; }
+* { box-sizing:border-box; }
+body { margin:0; color:var(--ink); background:#f6f8fb; font:14px Arial,sans-serif; }
+button,input,select,textarea { font:inherit; }
+button,summary { cursor:pointer; }
+button:disabled { cursor:not-allowed; opacity:.45; }
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+header { height:68px; padding:0 32px; display:flex; align-items:center; justify-content:space-between; background:white; border-bottom:1px solid var(--border); }
+.brand { display:flex; align-items:center; }
+.brand img { display:block; width:170px; height:auto; max-height:50px; object-fit:contain; }
+.header-right { display:flex; align-items:center; gap:25px; color:var(--muted); font-size:13px; }
+.lang-select { border:0; background:white; padding:8px; color:var(--ink); }
+.block-container { max-width:1440px; margin:auto; padding:20px 28px; }
+.page-title { margin:0 0 16px; font-size:26px; letter-spacing:-.6px; }
+.file-uploader-box { display:flex; align-items:center; gap:12px; position:relative; background:white; padding:12px 16px; border:1px solid var(--border); border-radius:8px; margin-bottom:16px; min-height:54px; }
+.file-uploader-box:focus-within { outline:2px solid var(--accent); }
+#upload-label { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:600; }
+.upload-action { display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; padding:10px 14px; border:1px solid var(--accent); border-radius:7px; background:var(--accent); color:white; white-space:nowrap; font-size:13px; font-weight:600; box-shadow:0 2px 5px #ef383826; }
+.replace-file { padding:7px 13px; border:1px solid var(--border); border-radius:6px; color:var(--muted); }
+.file-uploader-box input { position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer; }
+.main-layout { display:grid; grid-template-columns:330px minmax(0,1fr); gap:16px; align-items:start; }
+.card { background:white; border:1px solid var(--border); border-radius:9px; min-width:0; }
+.left-settings-col { padding:16px; }
+.title-subtitle { font-size:16px; font-weight:700; margin-bottom:14px; }
+.form-group { display:flex; flex-direction:column; gap:5px; margin-bottom:10px; min-width:0; }
+.form-group label { font-size:12px; color:#4d586b; }
+.form-group input,.form-group select,.form-group textarea { width:100%; min-width:0; border:1px solid #ccd4df; border-radius:6px; padding:8px 10px; background:white; color:var(--ink); }
+.form-group textarea { resize:vertical; line-height:1.4; min-height:62px; }
+.form-pair { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.student-row { display:flex; align-items:center; gap:6px; margin-bottom:7px; }
+.student-row input { flex:1; min-width:0; }
+.remove-student { width:28px; height:30px; border:0; border-radius:5px; background:#f3f5f8; color:var(--muted); }
+.primary-student { position:relative; }
+.primary-student input { padding-right:40px; }
+.add-student { position:absolute; right:5px; top:50%; transform:translateY(-50%); width:28px; height:28px; color:#8992a0; border:0; background:transparent; font-size:23px; line-height:1; }
+.form-group input:disabled,.form-group select:disabled { background:#f1f3f6; color:#8992a0; cursor:not-allowed; opacity:1; }
+.preset-actions { display:flex; gap:5px; }
+.preset-actions .st-btn { flex:1; padding:7px 5px; font-size:11px; }
+.preset-actions #delete-preset-btn { flex:0 0 36px; color:var(--accent); }
+.preset-picker { position:relative; }
+.preset-picker #preset_name { padding-right:38px; }
+.preset-picker #preset_name:read-only { color:#8992a0; background:#f1f3f6; }
+.preset-picker #format_preset { position:absolute; right:1px; top:1px; bottom:1px; width:32px; border:0; padding:0; background:transparent; color:transparent; }
+.preset-picker::after { content:'⌄'; position:absolute; right:11px; top:50%; transform:translateY(-60%); color:var(--muted); pointer-events:none; }
+.preset-picker option { color:var(--ink); background:white; }
+.preset-status { font-size:11px; color:var(--muted); margin:8px 0 12px; line-height:1.4; }
+.preset-status:empty { display:none; }
+.center-main-col { display:flex; flex-direction:column; min-width:0; min-height:0; height:650px; }
+.center-main-col > .card { flex:1; display:flex; flex-direction:column; min-height:0; }
+.preview-title-block,.preview-footer,#title-boundary-panel,.button-row { flex-shrink:0; }
+details { border:1px solid var(--border); border-radius:6px; margin-bottom:9px; }
+summary { padding:10px; font-size:13px; font-weight:600; }
+.details-body { padding:0 10px 4px; }
+.st-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:37px; border-radius:6px; padding:9px 15px; font-size:13px; font-weight:600; border:1px solid var(--border); background:white; color:var(--ink); }
+.btn-primary { background:var(--accent); border-color:var(--accent); color:white; }
+.btn-primary:hover:enabled { background:#d72e2e; }
+.apply-row { display:grid; grid-template-columns:1fr 34px; gap:7px; margin-top:13px; }
+#clear-btn { padding:6px; font-size:19px; color:var(--muted); }
+.preview-title-block { min-height:48px; display:flex; align-items:center; gap:18px; padding:0 14px; border-bottom:1px solid var(--border); }
+#preview-title { font-weight:700; }
+.preview-tabs { display:flex; align-self:stretch; }
+.preview-tab { border:0; background:white; padding:0 12px; font-size:12px; color:var(--muted); border-bottom:2px solid transparent; }
+.preview-tab.active { color:var(--ink); border-bottom-color:var(--accent); }
+.zoom-tools { display:flex; align-items:center; gap:9px; margin-left:auto; font-size:12px; color:var(--muted); }
+.zoom-tools button { width:27px; height:27px; background:white; border:1px solid var(--border); border-radius:5px; color:var(--ink); }
+.docx-preview { flex:1; height:0; min-height:max(460px,calc(100vh - 340px)); overflow:auto; background:var(--canvas); color:black; }
+.docx-preview .docx-wrapper { background:transparent !important; padding:16px !important; }
+.docx-preview-empty { display:flex; align-items:center; justify-content:center; color:#a8b1c0; font-size:44px; }
+.docx-preview.cover-only section.docx:not(:first-of-type) { display:none; }
+.preview-footer { display:flex; align-items:center; justify-content:space-between; gap:15px; min-height:35px; padding:8px 14px; color:var(--muted); font-size:11px; }
+#document-status { white-space:pre-line; }
+#document-status:not(:empty)::before { content:'✓ '; color:#12924c; }
+.button-row { display:flex; justify-content:flex-end; gap:10px; padding-top:10px; }
+.alert-error { display:none; border:1px solid #efbbbb; border-radius:6px; color:#a52222; background:#fff1f1; padding:12px; margin-bottom:12px; }
+#title-boundary-panel { padding:14px; border-bottom:1px solid var(--border); }
+#title-boundary-message { margin:0; }
+#title-boundary-list { max-height:320px; overflow:auto; margin:12px 0; }
+@media (min-width:1200px) and (max-height:850px) { .block-container { padding-top:14px; } .left-settings-col { padding:13px; } .form-group { margin-bottom:8px; } .form-group input,.form-group select { padding:7px 9px; } .docx-preview { min-height:450px; } }
+@media (max-width:850px) { header { padding:0 16px; } .block-container { padding:16px; } .main-layout { grid-template-columns:285px minmax(0,1fr); gap:12px; } .preview-title-block { flex-wrap:wrap; padding:8px; gap:5px; } .preview-tabs { height:34px; } .docx-preview { min-height:420px; } }
+@media (max-width:640px) { .main-layout { grid-template-columns:1fr; } .page-title { font-size:23px; } .docx-preview { height:65vh; min-height:360px; } .replace-file { font-size:11px; padding:6px; } .zoom-tools { gap:5px; } }
+@media print { @page { size:A4; margin:0; } header,.left-settings-col,.file-uploader-box,.page-title,.button-row,.preview-title-block,.preview-footer,.alert-error,#title-boundary-panel { display:none !important; } body { background:white; } .block-container { padding:0; max-width:none; } .main-layout,.center-main-col,.center-main-col > .card { display:block; height:auto !important; } .card { border:0; } .docx-preview { height:auto; min-height:0; overflow:visible; background:white; } .docx-preview .docx-wrapper { padding:0 !important; zoom:1 !important; } .docx-preview section.docx { display:block !important; margin:0 !important; box-shadow:none !important; } }
+    </style>
+</head>
+<body>
+<header>
+    <div class="brand"><img src="assets/satbayev-logo.png" alt="Satbayev University"></div>
+    <div class="header-right">
+        <select class="lang-select" id="lang-select" aria-label="Язык интерфейса" onchange="switchLanguage(this.value)">
+            <option value="ru">РУС</option><option value="kk">ҚАЗ</option>
+        </select>
+    </div>
+</header>
+<main class="block-container">
+    <h1 class="page-title" id="page-title">Оформление работы</h1>
+    <div id="error-message" class="alert-error" role="alert"></div>
+    <div class="file-uploader-box" id="drop-zone">
+        <span class="upload-action" id="upload-action">Загрузить документ</span>
+        <span id="upload-label"></span>
+        <span class="replace-file" id="replace-file-label">Заменить файл</span>
+        <input type="file" id="file-input" accept=".docx" aria-label="Загрузить документ DOCX" onchange="handleFile(this)">
+    </div>
+    <div class="main-layout">
+        <aside class="left-settings-col card">
+            <div class="title-subtitle" id="title-settings">Данные работы</div>
+            <div class="form-group"><label id="lbl-doc-type" for="document_type">Тип работы</label><select id="document_type"></select></div>
+            <div class="form-pair">
+                <div class="form-group"><label id="lbl-number" for="title_number">Номер</label><input type="text" id="title_number" placeholder="5"></div>
+                <div class="form-group"><label id="lbl-year" for="title_year">Год</label><input type="text" id="title_year"></div>
+            </div>
+            <div class="form-group"><label id="lbl-topic" for="title_topic">Тема</label><textarea id="title_topic" rows="2"></textarea></div>
+            <div class="form-group">
+                <label id="lbl-author" for="title_author">Студенты</label>
+                <div id="students-list"><div class="student-row primary-student"><input type="text" id="title_author" aria-label="Студент 1" placeholder="Фамилия Имя"><button type="button" class="add-student" id="add-student-btn" onclick="addStudent()" aria-label="Добавить студента" title="Добавить студента">+</button></div></div>
+            </div>
+            <div class="form-pair">
+                <div class="form-group"><label id="lbl-group" for="title_group">Группа</label><input type="text" id="title_group"></div>
+                <div class="form-group"><label id="lbl-code" for="title_code">Специальность</label><input type="text" id="title_code"></div>
+            </div>
+            <div class="form-group"><label id="lbl-teacher" for="title_teacher">Преподаватель</label><input type="text" id="title_teacher"></div>
+            <details><summary id="department-summary">Институт и кафедра</summary><div class="details-body">
+                <div class="form-group"><label id="lbl-institute" for="title_institute">Институт</label><input type="text" id="title_institute"></div>
+                <div class="form-group"><label id="lbl-department" for="title_department">Кафедра</label><input type="text" id="title_department"></div>
+            </div></details>
+            <details><summary id="settings-title">Параметры оформления</summary><div class="details-body">
+                <div class="form-group"><label id="lbl-preset" for="preset_name">Шаблон оформления</label><div class="preset-picker"><input id="preset_name" type="text" maxlength="60" value="ГОСТ" readonly><select id="format_preset" aria-label="Выбрать или создать шаблон" onchange="selectFormatPreset(this.value)"></select></div></div>
+                <div class="preset-actions"><button type="button" class="st-btn" id="save-preset-btn" onclick="saveFormatPreset()" disabled>Сохранить</button><button type="button" class="st-btn" id="delete-preset-btn" onclick="deleteFormatPreset()" aria-label="Удалить шаблон" title="Удалить шаблон" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></svg></button></div>
+                <div id="preset-status" class="preset-status" role="status" aria-live="polite"></div>
+                <div class="form-group"><label id="lbl-font-family" for="font_family">Шрифт</label><select id="font_family"><option>Times New Roman</option><option>Arial</option><option>Calibri</option><option>Cambria</option></select></div>
+                <div class="form-pair">
+                    <div class="form-group"><label id="lbl-font-size" for="font_size">Шрифт (пт)</label><input type="number" id="font_size" min="8" max="30" value="14"></div>
+                    <div class="form-group"><label id="lbl-line-spacing" for="line_spacing">Интервал</label><input type="number" id="line_spacing" min="1" max="3" step="0.1" value="1.5"></div>
+                </div>
+                <div class="form-pair">
+                    <div class="form-group"><label id="lbl-left-margin" for="left_margin">Слева (мм)</label><input type="number" id="left_margin" min="0" max="50" value="30"></div>
+                    <div class="form-group"><label id="lbl-right-margin" for="right_margin">Справа (мм)</label><input type="number" id="right_margin" min="0" max="50" value="20"></div>
+                </div>
+                <div class="form-pair">
+                    <div class="form-group"><label id="lbl-top-margin" for="top_margin">Сверху (мм)</label><input type="number" id="top_margin" min="0" max="50" value="20"></div>
+                    <div class="form-group"><label id="lbl-bottom-margin" for="bottom_margin">Снизу (мм)</label><input type="number" id="bottom_margin" min="0" max="50" value="20"></div>
+                </div>
+                <div class="form-group"><label id="lbl-first-line-indent" for="first_line_indent">Абзац (мм)</label><input type="number" id="first_line_indent" min="0" max="30" step="0.5" value="12.5"></div>
+            </div></details>
+            <div class="apply-row">
+                <button class="st-btn btn-primary" id="process-btn" onclick="processDocument()" disabled>Применить оформление</button>
+                <button class="st-btn" id="clear-btn" onclick="clearAll()" aria-label="Очистить" title="Очистить">↺</button>
+            </div>
+        </aside>
+        <section class="center-main-col">
+            <div class="card">
+                <div id="title-boundary-panel" hidden>
+                    <p id="title-boundary-message"></p><div id="title-boundary-list"></div>
+                    <button id="no-title-btn" class="st-btn" onclick="confirmNoTitle()">В документе нет титула</button>
+                </div>
+                <div class="preview-title-block">
+                    <span id="preview-title">Предпросмотр</span>
+                    <div class="preview-tabs" role="group" aria-label="Режим просмотра">
+                        <button class="preview-tab" id="cover-tab" aria-pressed="false" onclick="setPreviewMode('cover')">Титульный лист</button>
+                        <button class="preview-tab active" id="document-tab" aria-pressed="true" onclick="setPreviewMode('document')">Документ</button>
+                    </div>
+                    <div class="zoom-tools"><button onclick="changeZoom(-10)" aria-label="Уменьшить">−</button><span id="zoom-label">100%</span><button onclick="changeZoom(10)" aria-label="Увеличить">+</button></div>
+                </div>
+                <div id="docx-preview-box" class="docx-preview docx-preview-empty">DOCX</div>
+                <div class="preview-footer"><span id="document-status" role="status" aria-live="polite"></span><span id="page-count">0 / 0</span></div>
+            </div>
+            <div class="button-row">
+                <button class="st-btn" id="download-pdf-btn" onclick="printPDF()" disabled>Печать / PDF</button>
+                <button class="st-btn btn-primary" id="download-word-btn" onclick="downloadWord()" disabled>Скачать Word</button>
+            </div>
+        </section>
+    </div>
+</main>
+
+<script src="vendor/jszip.min.js"></script>
+<script src="vendor/docx-preview.min.js"></script>
+<script src="titles.js"></script>
+<script>
+function parseXml(text, name) {
+    const xml = new DOMParser().parseFromString(text, 'application/xml');
+    if (xml.getElementsByTagName('parsererror').length) throw new Error('Некорректный XML: ' + name);
+    return xml;
+}
+
+async function openDocx(file) {
+    if (!/\.docx$/i.test(file.name)) throw new Error('Поддерживается только DOCX.');
+    if (!file.size || file.size > 25 * 1024 * 1024) throw new Error('Размер DOCX должен быть от 1 байта до 25 МБ.');
+    if (typeof JSZip === 'undefined') throw new Error('Не загрузилась библиотека JSZip.');
+    const buffer = await file.arrayBuffer();
+    checkZipLimits(buffer);
+    const zip = await JSZip.loadAsync(buffer);
+    const documentFile = zip.file('word/document.xml');
+    if (!documentFile || !zip.file('[Content_Types].xml') || !zip.file('_rels/.rels')) throw new Error('В файле отсутствуют обязательные части DOCX.');
+    const xmlDoc = parseXml(await documentFile.async('string'), 'document.xml');
+    if (!xmlDoc.getElementsByTagNameNS(W, 'body')[0]) throw new Error('Основная часть документа отсутствует.');
+    return { file: file, zip: zip, xmlDoc: xmlDoc, analysis: analyzeDocument(xmlDoc) };
+}
+
+function checkZipLimits(buffer) {
+    const view = new DataView(buffer);
+    let end = -1;
+    for (let position = view.byteLength - 22; position >= Math.max(0, view.byteLength - 65557); position--) {
+        if (view.getUint32(position, true) === 0x06054b50 && position + 22 + view.getUint16(position + 20, true) === view.byteLength) { end = position; break; }
+    }
+    if (end < 0) throw new Error('Файл не является корректным ZIP/DOCX.');
+    const count = view.getUint16(end + 10, true);
+    let offset = view.getUint32(end + 16, true);
+    let total = 0;
+    if (count > 3000 || view.getUint16(end + 4, true) || view.getUint16(end + 6, true)) throw new Error('Слишком сложный или неподдерживаемый ZIP/DOCX.');
+    for (let index = 0; index < count; index++) {
+        if (offset + 46 > end || view.getUint32(offset, true) !== 0x02014b50) throw new Error('Повреждён каталог ZIP.');
+        const size = view.getUint32(offset + 24, true);
+        total += size;
+        if (size > 32 * 1024 * 1024 || total > 100 * 1024 * 1024) throw new Error('Распакованный DOCX превышает допустимый размер.');
+        offset += 46 + view.getUint16(offset + 28, true) + view.getUint16(offset + 30, true) + view.getUint16(offset + 32, true);
+    }
+}
+
+function cleanText(text) {
+    return text.normalize('NFKC').replace(/[\u00ac\u00ad\u200b-\u200d\ufeff]/g, '').replace(/\s+/g, ' ').trim();
+}
+
+function paragraphText(element) {
+    const textNodes = element.querySelectorAll('*');
+    let text = '';
+    for (let index = 0; index < textNodes.length; index++) {
+        if (textNodes[index].namespaceURI === W && textNodes[index].localName === 't') text += textNodes[index].textContent;
+    }
+    return cleanText(text);
+}
+
+function getParagraphs(nodes) {
+    const paragraphs = [];
+    for (let index = 0; index < nodes.length; index++) {
+        if (nodes[index].localName === 'p') paragraphs.push(nodes[index]);
+        else {
+            const nested = nodes[index].getElementsByTagNameNS(W, 'p');
+            for (let position = 0; position < nested.length; position++) paragraphs.push(nested[position]);
+        }
+    }
+    return paragraphs;
+}
+
+function titleLines(nodes) {
+    const paragraphs = getParagraphs(nodes);
+    const lines = [];
+    for (let index = 0; index < paragraphs.length; index++) {
+        const elements = paragraphs[index].getElementsByTagName('*');
+        let text = '';
+        for (let position = 0; position < elements.length; position++) {
+            const element = elements[position];
+            if (element.namespaceURI !== W) continue;
+            if (element.localName === 't') text += element.textContent;
+            if (element.localName === 'tab' || element.localName === 'br' || element.localName === 'cr') {
+                if (cleanText(text)) lines.push(cleanText(text));
+                text = '';
+            }
+        }
+        if (cleanText(text)) lines.push(cleanText(text));
+    }
+    return lines;
+}
+
+const METADATA_FIELDS = [
+    ['title_topic', ['название работы', 'на тему', 'тема работы', 'тема', 'тематика', 'тему', 'тақырыбы', 'тақырып', 'subject matter', 'subject', 'topic', 'title']],
+    ['title_author', ['выполнил студент', 'выполнила студентка', 'выполнила', 'выполнил', 'подготовил', 'подготовила', 'автор', 'студент', 'магистрант', 'орындаған', 'білім алушының аты-жөні', 'білім алушы', 'written by', 'witten by', 'submitted by', 'prepared by', 'author', 'student']],
+    ['title_teacher', ['принял преподаватель', 'приняла преподаватель', 'научный руководитель', 'проверила', 'проверил', 'приняла', 'принял', 'преподаватель', 'руководитель', 'тексерген', 'оқытушының аты-жөні', 'оқытушы', 'checked by', 'supervisor', 'instructor', 'teacher']],
+    ['title_group', ['учебная группа', 'группа', 'тобы', 'топ', 'group']],
+    ['title_code', ['образовательная программа', 'специальность', 'шифр', 'оп', 'мамандық шифрі', 'мамандығы', 'мамандық', 'specialty', 'programme', 'program']],
+    ['title_institute', ['институт', 'факультет', 'institute', 'faculty']],
+    ['title_department', ['кафедра', 'department']]
+];
+
+function metadataLabel(text) {
+    let result = null;
+    let longest = 0;
+    for (let index = 0; index < METADATA_FIELDS.length; index++) {
+        const field = METADATA_FIELDS[index][0];
+        const aliases = METADATA_FIELDS[index][1];
+        for (let position = 0; position < aliases.length; position++) {
+            const alias = aliases[position];
+            const label = alias.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/ /g, '\\s+');
+            const pattern = new RegExp('^' + label + '(?=$|[\\s:：=–—_\\-(]|\\d)(?:\\s*(?:\\(Ф\\.?\\s*И\\.?\\s*О\\.?\\)|[(:：=–—-])\\s*)?(.*)$', 'iu');
+            const match = text.match(pattern);
+            if (match && alias.length > longest) {
+                result = { field: field, value: match[1].replace(/^[:：\s_]+|[_\s]+$/g, '').trim() };
+                longest = alias.length;
+            }
+        }
+    }
+    return result;
+}
+
+function titleDate(text) {
+    const match = text.match(/^(?:[\p{L} .–,-]{1,40}?\s*)?((?:19|20)\d{2})(?:\s*(?:год[а]?|г\.?|ж\.?|жыл|year))?$/iu);
+    if (match) return match[1];
+    return null;
+}
+
+function isFormCodeLine(text) {
+    return /^(?:ф|форма|form)\s+/i.test(text) && /\d+(?:[-/]\d+)+/.test(text);
+}
+
+function isBodyHeading(text) {
+    return /^(?:\d+(?:\.\d+)*[.)]?\s*)?(?:введение|кіріспе|introduction|содержание|мазмұны|contents|основная часть|негізгі бөлім|цель работы|мақсаты)(?:\s*[:.]|$)/i.test(text);
+}
+
+function workType(text) {
+    let normalized = text;
+    if (/[а-яё]/i.test(normalized)) normalized = normalized.replace(/[Aa]/g, 'а');
+    normalized = cleanText(normalized).replace(/[’‘]/g, "'").replace(/\s*(?:№|#|no\.?|number)?\s*\d+(?:[.-]\d+)*\s*$/i, '').trim();
+    if (/^(?:лабораторн[а-я]*\s+работ[а-я]*|лабораториялық жұмыс|laboratory work)$/i.test(normalized)) return 'lab';
+    if (/^(?:курсовая работа|курстық жұмыс)$/i.test(normalized)) return 'course';
+    if (/^(?:практическая работа|практикалық жұмыс)$/i.test(normalized)) return 'practical';
+    if (/^реферат$/i.test(normalized)) return 'referat';
+    if (/^(?:эссе|essay)$/i.test(normalized)) return 'essay';
+    if (/^(?:отч[её]т(?: о .+)?|есеп беру|report)$/i.test(normalized)) return 'otchet';
+    if (/^(?:срс|сро|сөж)$/i.test(normalized)) return 'srs';
+    if (/^(?:срсп|сроп|соөж)$/i.test(normalized)) return 'srsp';
+    if (/^siw$/i.test(normalized)) return 'en_siw';
+    if (/^тәжірбиелік жұмыс$/i.test(normalized)) return 'tazh';
+    normalized = normalized.toLowerCase().replace(/\s*\([^)]*\)\s*/g, '').trim();
+    for (let index = 0; index < ENTRIES.length; index++) {
+        const entry = ENTRIES[index];
+        const russian = entry.ru.toLowerCase().replace(/\s*\([^)]*\)\s*/g, '').trim();
+        const kazakh = entry.kk.toLowerCase().replace(/\s*\([^)]*\)\s*/g, '').trim();
+        if (normalized === russian || normalized === kazakh) return entry.id;
+    }
+    return null;
+}
+
+function isGeneratedTitle(element) {
+    if (!element || element.localName !== 'sdt') return false;
+    const tags = element.getElementsByTagNameNS(W, 'tag');
+    for (let index = 0; index < tags.length; index++) {
+        if (tags[index].getAttributeNS(W, 'val') === 'norm-title-v1') return true;
+    }
+    return false;
+}
+
+function inspectTitle(xmlDoc, startIndex) {
+    const body = xmlDoc.getElementsByTagNameNS(W, 'body')[0];
+    if (!body) return { state: 'absent', range: null };
+    const children = Array.from(body.children);
+    const start = startIndex || 0;
+    if (isGeneratedTitle(children[start])) return { state: 'existing', range: [children[start]], endIndex: start };
+    let end = -1;
+    let dateEnd = -1;
+    let seenText = false;
+    let mixedBreak = false;
+    for (let index = start; index < Math.min(children.length, start + 80); index++) {
+        const element = children[index];
+        const text = paragraphText(element);
+        if (dateEnd >= 0 && text && !isFormCodeLine(text)) { end = dateEnd; break; }
+        if (isBodyHeading(text)) {
+            if (index === start) return { state: 'absent', range: null };
+            end = index - 1;
+            break;
+        }
+        if (text) seenText = true;
+        const properties = child(element, 'pPr');
+        const breakBefore = properties && child(properties, 'pageBreakBefore');
+        if (index > start && breakBefore && breakBefore.getAttributeNS(W, 'val') !== '0') { end = index - 1; break; }
+        const breaks = element.getElementsByTagNameNS(W, 'br');
+        let pageBreak = null;
+        for (let position = 0; position < breaks.length; position++) {
+            if (breaks[position].getAttributeNS(W, 'type') === 'page') { pageBreak = breaks[position]; break; }
+        }
+        if (seenText && element.localName === 'p' && (pageBreak || (properties && child(properties, 'sectPr')))) {
+            if (pageBreak) {
+                const textNodes = element.getElementsByTagNameNS(W, 't');
+                let before = false;
+                let after = false;
+                for (let position = 0; position < textNodes.length; position++) {
+                    if (!textNodes[position].textContent.trim()) continue;
+                    if (textNodes[position].compareDocumentPosition(pageBreak) & Node.DOCUMENT_POSITION_FOLLOWING) before = true;
+                    if (pageBreak.compareDocumentPosition(textNodes[position]) & Node.DOCUMENT_POSITION_FOLLOWING) after = true;
+                }
+                if (after && !before) { end = index - 1; break; }
+                if (before && after) mixedBreak = true;
+            }
+            end = index;
+            break;
+        }
+        const lines = titleLines([element]);
+        if (titleDate(text) || (lines.length && titleDate(lines[lines.length - 1]))) dateEnd = index;
+        if (element.localName === 'sectPr') break;
+    }
+    if (end < start && dateEnd >= start) end = dateEnd;
+    const range = [];
+    let limit = Math.min(children.length, start + 40);
+    if (end >= start) limit = end + 1;
+    for (let index = start; index < limit; index++) {
+        if (children[index].localName !== 'sectPr') range.push(children[index]);
+    }
+    const lines = titleLines(range);
+    const university = /университет|university|академи|колледж/i.test(lines.join(' '));
+    let hasType = false;
+    const labels = [];
+    for (let index = 0; index < lines.length; index++) {
+        if (workType(lines[index]) || /^(?:дипломн[а-я]+\s+(?:работа|проект)|диссертация|доклад|семестровая работа|bachelor.?s thesis|master.?s thesis|диссертациялық жұмыс)$/i.test(lines[index])) hasType = true;
+        const label = metadataLabel(lines[index]);
+        if (label && labels.indexOf(label.field) < 0) labels.push(label.field);
+    }
+    if (hasType && (university || labels.length >= 2) && end >= start && !mixedBreak) return { state: 'existing', range: range, endIndex: end };
+    if (hasType || (university && labels.length >= 1)) return { state: 'uncertain', range: null };
+    return { state: 'absent', range: null };
+}
+
+function titleRange(xmlDoc) {
+    return inspectTitle(xmlDoc).range;
+}
+
+function addMetadataValue(values, field, value) {
+    if (!values[field]) values[field] = [];
+    if (values[field].indexOf(value) < 0) values[field].push(value);
+}
+
+function metadataLines(nodes) {
+    const paragraphs = getParagraphs(nodes);
+    const lines = [];
+    for (let index = 0; index < paragraphs.length; index++) {
+        let table = paragraphs[index].parentNode;
+        while (table && table.localName !== 'tbl') table = table.parentNode;
+        if (table && /качество выполнения|диапазон оцен|requirements for|assessment criteria|баға диапазоны|жұмысты орындау сапасы/i.test(paragraphText(table))) continue;
+        const paragraphLines = titleLines([paragraphs[index]]);
+        let parent = paragraphs[index].parentNode;
+        let student = false;
+        while (parent) {
+            if (parent.localName === 'sdt') {
+                const tag = parent.getElementsByTagNameNS(W, 'tag')[0];
+                if (tag && tag.getAttributeNS(W, 'val') === 'norm-student-v1') student = true;
+            }
+            parent = parent.parentNode;
+        }
+        if (student && paragraphLines.length) paragraphLines[0] = 'Студент: ' + paragraphLines[0];
+        for (let position = 0; position < paragraphLines.length; position++) lines.push(paragraphLines[position]);
+    }
+    return lines;
+}
+
+function extractMetadata(xmlDoc, titleInfo) {
+    const body = xmlDoc.getElementsByTagNameNS(W, 'body')[0];
+    const info = titleInfo || inspectTitle(xmlDoc);
+    let nodes = info.range;
+    if (!nodes) nodes = Array.from(body.children).slice(0, 80);
+    const lines = metadataLines(nodes);
+    const metadata = {};
+    const values = {};
+    for (let index = 0; index < lines.length; index++) {
+        const line = lines[index];
+        if (isBodyHeading(line)) break;
+        if (!metadata.docTypeId) {
+            metadata.docTypeId = workType(line);
+            if (metadata.docTypeId) {
+                const number = line.match(/(?:№|#|no\.?)\s*(\d+(?:[.-]\d+)*)\s*$/i);
+                if (number) metadata.title_number = number[1];
+            }
+        }
+        const date = titleDate(line);
+        if (date) metadata.title_year = date;
+        const label = metadataLabel(line);
+        if (label) {
+            let value = label.value;
+            const next = lines[index + 1] || '';
+            if (!value && next && !isBodyHeading(next) && !workType(next) && !metadataLabel(next) && !titleDate(next) && !/^№/.test(next)) value = next;
+            if (value && value.length < 500 && !/^[_\s%]+$/.test(value)) addMetadataValue(values, label.field, value);
+        }
+        const suffix = line.match(/^(.+?)\s+(институты|кафедрасы)$/i);
+        if (suffix && !/_{3}/.test(suffix[1])) {
+            let field = 'title_department';
+            if (/институт/i.test(suffix[2])) field = 'title_institute';
+            addMetadataValue(values, field, suffix[1]);
+        }
+    }
+    for (const field in values) {
+        if (values[field].length === 1) metadata[field] = values[field][0];
+    }
+    if (values.title_author && values.title_author.length) {
+        metadata.students = values.title_author;
+        metadata.title_author = values.title_author[0];
+    }
+    if (!metadata.title_topic && !values.title_topic && info.range) {
+        const paragraphs = getParagraphs(info.range);
+        let typeIndex = -1;
+        for (let index = 0; index < paragraphs.length; index++) {
+            if (workType(paragraphText(paragraphs[index]))) { typeIndex = index; break; }
+        }
+        for (let index = typeIndex + 1; typeIndex >= 0 && index < paragraphs.length; index++) {
+            const paragraph = paragraphs[index];
+            const text = paragraphText(paragraph);
+            if (!text) continue;
+            if (inTable(paragraph) || metadataLabel(text) || titleDate(text) || isBodyHeading(text)) break;
+            const properties = child(paragraph, 'pPr');
+            const alignment = properties && child(properties, 'jc');
+            const centred = alignment && alignment.getAttributeNS(W, 'val') === 'center';
+            if (text.length >= 8 && text.length <= 500 && !/^[\d_\s%№]+$/.test(text) && (centred || /^[«"“].+[»"”]$/.test(text))) metadata.title_topic = text;
+            break;
+        }
+    }
+    const text = lines.join(' ');
+    metadata.language = 'en';
+    if (/[а-яё]/i.test(text)) metadata.language = 'ru';
+    if (/[әғқңөұүһі]/i.test(text)) metadata.language = 'kk';
+    if (metadata.language === 'en' && metadata.docTypeId === 'lab') metadata.docTypeId = 'en_lab';
+    if (metadata.language === 'en' && metadata.docTypeId === 'otchet') metadata.docTypeId = 'en_report';
+    return metadata;
+}
+
+function analyzeDocument(xmlDoc) {
+    const firstTitle = inspectTitle(xmlDoc);
+    const analysis = { state: firstTitle.state, boundary: null, metadata: extractMetadata(xmlDoc, firstTitle) };
+    if (firstTitle.state !== 'existing') return analysis;
+    let nextIndex = firstTitle.endIndex + 1;
+    analysis.boundary = { blockIndex: firstTitle.endIndex, breakIndex: null };
+    for (let count = 0; count < 20; count++) {
+        const nextTitle = inspectTitle(xmlDoc, nextIndex);
+        if (nextTitle.state === 'absent') return analysis;
+        if (nextTitle.state === 'uncertain') {
+            analysis.state = 'uncertain';
+            analysis.boundary = null;
+            return analysis;
+        }
+        const extra = extractMetadata(xmlDoc, nextTitle);
+        for (const field in extra) {
+            if (!analysis.metadata[field]) analysis.metadata[field] = extra[field];
+        }
+        analysis.boundary.blockIndex = nextTitle.endIndex;
+        nextIndex = nextTitle.endIndex + 1;
+    }
+    analysis.state = 'uncertain';
+    analysis.boundary = null;
+    return analysis;
+}
+
+function getBoundaryOptions(xmlDoc) {
+    const body = xmlDoc.getElementsByTagNameNS(W, 'body')[0];
+    const options = [];
+    for (let blockIndex = 0; blockIndex < Math.min(body.children.length, 120); blockIndex++) {
+        const element = body.children[blockIndex];
+        if (element.localName === 'sectPr') continue;
+        if (element.localName === 'p') {
+            const breaks = element.getElementsByTagNameNS(W, 'br');
+            for (let breakIndex = 0; breakIndex < breaks.length; breakIndex++) {
+                const range = xmlDoc.createRange();
+                range.selectNodeContents(element);
+                range.setEndBefore(breaks[breakIndex]);
+                const text = paragraphText(range.cloneContents());
+                if (text) options.push({ blockIndex: blockIndex, breakIndex: breakIndex, text: text + ' ↵' });
+            }
+        }
+        let text = paragraphText(element);
+        if (!text && element.getElementsByTagNameNS(W, 'drawing').length) text = 'Логотип / сурет';
+        if (!text) text = 'Пустая строка / бос жол';
+        options.push({ blockIndex: blockIndex, breakIndex: null, text: text });
+    }
+    return options;
+}
+
+function removeTitlePrefix(xmlDoc, boundary) {
+    const body = xmlDoc.getElementsByTagNameNS(W, 'body')[0];
+    const children = Array.from(body.children);
+    const element = children[boundary.blockIndex];
+    if (!element || element.localName === 'sectPr') throw new Error('Неверная граница титула.');
+    if (boundary.breakIndex !== null) {
+        const pageBreak = element.getElementsByTagNameNS(W, 'br')[boundary.breakIndex];
+        if (element.localName !== 'p' || !pageBreak) throw new Error('Неверная граница титула.');
+        const range = xmlDoc.createRange();
+        const properties = child(element, 'pPr');
+        if (properties) range.setStartAfter(properties);
+        else range.setStart(element, 0);
+        range.setEndAfter(pageBreak);
+        range.deleteContents();
+    }
+    for (let index = 0; index < boundary.blockIndex; index++) body.removeChild(children[index]);
+    if (boundary.breakIndex === null) body.removeChild(element);
+}
+
+function metadataFromBoundary(xmlDoc, boundary) {
+    const copy = xmlDoc.cloneNode(true);
+    const body = copy.getElementsByTagNameNS(W, 'body')[0];
+    const element = body.children[boundary.blockIndex];
+    if (boundary.breakIndex !== null) {
+        const pageBreak = element.getElementsByTagNameNS(W, 'br')[boundary.breakIndex];
+        const range = copy.createRange();
+        range.selectNodeContents(element);
+        range.setStartBefore(pageBreak);
+        range.deleteContents();
+    }
+    while (body.children.length > boundary.blockIndex + 1) body.removeChild(body.lastElementChild);
+    return extractMetadata(copy, { range: Array.from(body.children) });
+}
+
+async function preparePackage(zip) {
+    const relationshipNamespace = 'http://schemas.openxmlformats.org/package/2006/relationships';
+    const typeNamespace = 'http://schemas.openxmlformats.org/package/2006/content-types';
+    const relationshipFile = zip.file('word/_rels/document.xml.rels');
+    let relationshipText = '<Relationships xmlns="' + relationshipNamespace + '"/>';
+    if (relationshipFile) relationshipText = await relationshipFile.async('string');
+    const relDoc = parseXml(relationshipText, 'relationships');
+    const ctDoc = parseXml(await zip.file('[Content_Types].xml').async('string'), 'content types');
+    const ids = [];
+    for (let index = 0; index < relDoc.documentElement.children.length; index++) {
+        const id = relDoc.documentElement.children[index].getAttribute('Id');
+        if (ids.indexOf(id) >= 0) throw new Error('В исходном DOCX обнаружены повторяющиеся ID связей.');
+        ids.push(id);
+    }
+    function addRel(type, target) {
+        const relationships = relDoc.documentElement.children;
+        for (let index = 0; index < relationships.length; index++) {
+            const relationship = relationships[index];
+            if (relationship.getAttribute('Type') === type && relationship.getAttribute('Target') === target && relationship.getAttribute('TargetMode') !== 'External') return relationship.getAttribute('Id');
+        }
+        let number = 1;
+        while (ids.indexOf('rIdNorm' + number) >= 0) number++;
+        const id = 'rIdNorm' + number;
+        ids.push(id);
+        const relationship = relDoc.createElementNS(relationshipNamespace, 'Relationship');
+        relationship.setAttribute('Id', id);
+        relationship.setAttribute('Type', type);
+        relationship.setAttribute('Target', target);
+        relDoc.documentElement.appendChild(relationship);
+        return id;
+    }
+    function contentType(kind, key, type) {
+        let attribute = 'PartName';
+        if (kind === 'Default') attribute = 'Extension';
+        const types = ctDoc.documentElement.children;
+        for (let index = 0; index < types.length; index++) {
+            if (types[index].localName === kind && types[index].getAttribute(attribute) === key) return;
+        }
+        const element = ctDoc.createElementNS(typeNamespace, kind);
+        element.setAttribute(attribute, key);
+        element.setAttribute('ContentType', type);
+        ctDoc.documentElement.appendChild(element);
+    }
+    function uniquePart(base) {
+        let name = base;
+        let number = 1;
+        while (zip.file('word/' + name)) {
+            name = base.replace(/(\.[^.]+)$/, '_' + number + '$1');
+            number++;
+        }
+        return name;
+    }
+    const footerName = uniquePart('norm_footer.xml');
+    const footerId = addRel(R + '/footer', footerName);
+    contentType('Override', '/word/' + footerName, 'application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml');
+    contentType('Default', 'rels', 'application/vnd.openxmlformats-package.relationships+xml');
+    return { relDoc: relDoc, ctDoc: ctDoc, addRel: addRel, contentType: contentType, uniquePart: uniquePart, footerId: footerId, footerName: footerName };
+}
+
+    const TEXTS = {
+        "kk": {
+            "page_title": "Құжат сапасын бақылау",
+            "settings_title": "Талаптарды сандармен енгізіңіз:",
+            "title_settings": "Титулка деректері",
+            "document_type": "Құжат түрі",
+            "topic": "Тақырыбы",
+            "author": "Орындаған",
+            "code": "Шифр",
+            "year": "Жыл",
+            "font_size": "Қаріп өлшемі (pt)",
+            "line_spacing": "Жоларалық интервал",
+            "left_margin": "Сол жақ өріс (мм)",
+            "right_margin": "Оң жақ өріс (мм)",
+            "top_margin": "Жоғарғы өріс (мм)",
+            "bottom_margin": "Төменгі өріс (мм)",
+            "first_line_indent": "Абзац шегінісі (мм)",
+            "upload_button": "Құжатты жүктеу",
+            "process_button": "Рәсімдеуді қолдану",
+            "clear_button": "🔄 Тазалау",
+            "download_word": "📝 Word жүктеп алу",
+            "download_pdf": "🖨️ Басып шығару / PDF",
+            "preview_title": "Алдын ала қарау",
+            "preview_empty": "DOCX",
+            "processing": "Өңделуде...",
+            "error_docx": "Файлды өңдеу мүмкін болмады. Тек .docx форматы қолдау көрсетіледі.",
+            "institute": "Институт", "department": "Кафедра", "teacher": "Оқытушы", "group": "Топ"
+        },
+        "ru": {
+            "page_title": "Нормоконтроль документов",
+            "settings_title": "Введите требования в цифрах:",
+            "title_settings": "Данные титульного листа",
+            "document_type": "Тип документа",
+            "topic": "Тема",
+            "author": "Выполнил(а)",
+            "code": "Шифр",
+            "year": "Год",
+            "font_size": "Размер шрифта (pt)",
+            "line_spacing": "Межстрочный интервал",
+            "left_margin": "Левое поле (мм)",
+            "right_margin": "Правое поле (мм)",
+            "top_margin": "Верхнее поле (мм)",
+            "bottom_margin": "Нижнее поле (мм)",
+            "first_line_indent": "Абзацный отступ (мм)",
+            "upload_button": "Загрузить документ",
+            "process_button": "Применить оформление",
+            "clear_button": "🔄 Очистить",
+            "download_word": "📝 Скачать Word",
+            "download_pdf": "🖨️ Печать / PDF",
+            "preview_title": "Предварительный просмотр",
+            "preview_empty": "DOCX",
+            "processing": "Обработка...",
+            "error_docx": "Не удалось обработать файл. Поддерживается только формат .docx.",
+            "institute": "Институт", "department": "Кафедра", "teacher": "Преподаватель", "group": "Группа"
+        }
+    };
+
+    const W = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
+    const R = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships';
+    const MM = 56.693; // twips in 1 mm
+    const FONT = 'Times New Roman';
+    const FIELD_IDS = ['title_topic', 'title_author', 'title_code', 'title_year', 'title_institute', 'title_department', 'title_teacher', 'title_group', 'title_number'];
+
+    // Типы документов = титульные листы из файла «SATBAYEV UNIVERSITY Титулки.docx».
+    // t: номер блока в titles.js для каждого языка шаблона.
+    const ENTRIES = [
+        { id: 'lab', ru: 'Лабораторная работа', kk: 'Лабораториялық жұмыс', t: { ru: 299, kk: 328 } },
+        { id: 'zerth', ru: 'Зертханалық жұмыс (каз. форма)', kk: 'Зертханалық жұмыс', t: { kk: 490 } },
+        { id: 'practical', ru: 'Практическая работа', kk: 'Практикалық жұмыс', t: { ru: 434, kk: 462 } },
+        { id: 'tazh', ru: 'Тәжірибелік жұмыс (каз. форма)', kk: 'Тәжірибелік жұмыс', t: { kk: 353 } },
+        { id: 'course', ru: 'Курсовая работа', kk: 'Курстық жұмыс', t: { ru: 108, kk: 136 } },
+        { id: 'semestr', ru: 'Семестровая работа', kk: 'Семестрлік жұмыс', t: { ru: 523, kk: 551 } },
+        { id: 'referat', ru: 'Реферат', kk: 'Реферат', t: { ru: 0, kk: 28 } },
+        { id: 'essay', ru: 'Эссе', kk: 'Эссе', t: { ru: 245, kk: 192 } },
+        { id: 'doklad', ru: 'Доклад', kk: 'Баяндама', t: { ru: 664, kk: 692 } },
+        { id: 'otchet', ru: 'Отчет', kk: 'Есеп беру', t: { ru: 830, kk: 803 } },
+        { id: 'srs', ru: 'СРС', kk: 'СӨЖ', t: { ru: 54, kk: 80 } },
+        { id: 'srsp', ru: 'СРСП', kk: 'СОӨЖ', t: { ru: 165, kk: 272 } },
+        { id: 'srm', ru: 'СРМ', kk: 'СРМ', t: { ru: 218 } },
+        { id: 'srmp', ru: 'СРМП', kk: 'МӨОЖ', t: { ru: 381, kk: 408 } },
+        { id: 'sr', ru: 'Самостоятельная работа', kk: 'Самостоятельная работа', t: { ru: 775 } },
+        { id: 'seminar', ru: 'Семинар', kk: 'Семинар', t: { ru: 579 } },
+        { id: 'idz', ru: 'ИДЗ', kk: 'ИДЗ', t: { ru: 747 } },
+        { id: 'rgr', ru: 'РГР', kk: 'РГР', t: { ru: 936 } },
+        { id: 'comm', ru: 'Коммерческий проект', kk: 'Коммерческий проект', t: { ru: 963 } },
+        { id: 'rub', ru: 'Рубежный контроль', kk: 'Рубежный контроль', t: { ru: 991 } },
+        { id: 'zhut', ru: 'ЖҰТ', kk: 'ЖҰТ', t: { kk: 720 } },
+        { id: 'en_lab', ru: 'Laboratory work (English)', kk: 'Laboratory work (English)', t: { en: 909 } },
+        { id: 'en_report', ru: 'Report (English)', kk: 'Report (English)', t: { en: 607 } },
+        { id: 'en_siw', ru: "Student's independent work (English)", kk: "Student's independent work (English)", t: { en: 635 } },
+        { id: 'en_tsis', ru: 'TSIS (English)', kk: 'TSIS (English)', t: { en: 857 } },
+        { id: 'en_sis', ru: 'SIS (English)', kk: 'SIS (English)', t: { en: 883 } }
+    ];
+    const SETTING_IDS = ['font_family', 'font_size', 'line_spacing', 'left_margin', 'right_margin', 'top_margin', 'bottom_margin', 'first_line_indent'];
+
+    const GOST_SETTINGS = Object.freeze({ font_family: FONT, font_size: 14, line_spacing: 1.5, left_margin: 30, right_margin: 20, top_margin: 20, bottom_margin: 20, first_line_indent: 12.5 });
+    let formatPresets = [];
+    let selectedPreset = 'gost';
+
+    let currentLang = "ru";
+    let selectedFile = null;
+    let resultBlob = null;
+    let runToken = 0;
+    let debounceTimer = null;
+    let resultName = null;
+    let sourceLang = null;
+    let importPending = false;
+    let importSummary = '';
+    let importedDocument = null;
+    let changedFields = {};
+    let boundaryOptions = [];
+    let previewMode = 'document';
+    let previewZoom = 100;
+
+    function store(key, val) { try { localStorage.setItem('norm_' + key, val); } catch (e) {} }
+    function load(key) { try { return localStorage.getItem('norm_' + key); } catch (e) { return null; } }
+
+    function validFormatValues(values) {
+        if (!values || typeof values !== 'object') return false;
+        const fonts = document.getElementById('font_family').options;
+        let knownFont = false;
+        for (let index = 0; index < fonts.length; index++) {
+            if (fonts[index].value === values.font_family) knownFont = true;
+        }
+        if (!knownFont) return false;
+        for (let index = 1; index < SETTING_IDS.length; index++) {
+            const id = SETTING_IDS[index];
+            const input = document.getElementById(id);
+            if (typeof values[id] !== 'number' || !Number.isFinite(values[id]) || values[id] < Number(input.min) || values[id] > Number(input.max)) return false;
+        }
+        return true;
+    }
+
+    function writeFormatValues(values) {
+        for (let index = 0; index < SETTING_IDS.length; index++) {
+            const id = SETTING_IDS[index];
+            document.getElementById(id).value = values[id];
+        }
+    }
+
+    function readFormatValues() {
+        if (selectedPreset === 'gost') writeFormatValues(GOST_SETTINGS);
+        const values = {};
+        for (let index = 0; index < SETTING_IDS.length; index++) {
+            const id = SETTING_IDS[index];
+            const value = document.getElementById(id).value;
+            values[id] = id === 'font_family' ? value : value === '' ? NaN : Number(value);
+        }
+        if (!validFormatValues(values)) throw new Error(currentLang === 'kk' ? 'Рәсімдеу параметрлерін тексеріңіз.' : 'Проверьте параметры оформления.');
+        return values;
+    }
+
+    function updatePresetLabels() {
+        const kk = currentLang === 'kk';
+        const labels = {
+            'lbl-preset': kk ? 'Рәсімдеу үлгісі' : 'Шаблон оформления',
+            'lbl-font-family': kk ? 'Қаріп' : 'Шрифт',
+            'save-preset-btn': kk ? 'Сақтау' : 'Сохранить'
+        };
+        for (const id in labels) document.getElementById(id).textContent = labels[id];
+        const remove = document.getElementById('delete-preset-btn');
+        remove.setAttribute('aria-label', kk ? 'Үлгіні жою' : 'Удалить шаблон');
+        remove.title = remove.getAttribute('aria-label');
+        document.getElementById('format_preset').setAttribute('aria-label', kk ? 'Үлгіні таңдау немесе жасау' : 'Выбрать или создать шаблон');
+        if (selectedPreset === 'gost') document.getElementById('preset-status').textContent = '';
+        const create = document.querySelector('#format_preset option[value="new"]');
+        if (create) create.textContent = kk ? '+ Үлгі жасау' : '+ Создать шаблон';
+    }
+
+    function renderFormatPresets() {
+        const select = document.getElementById('format_preset');
+        select.innerHTML = '';
+        select.add(new Option('ГОСТ', 'gost'));
+        for (let index = 0; index < formatPresets.length; index++) {
+            select.add(new Option(formatPresets[index].name, formatPresets[index].id));
+        }
+        select.add(new Option(currentLang === 'kk' ? '+ Үлгі жасау' : '+ Создать шаблон', 'new'));
+        select.value = selectedPreset;
+    }
+
+    function selectFormatPreset(id) {
+        if (id === 'new') { newFormatPreset(); return; }
+        let values = GOST_SETTINGS;
+        let name = 'ГОСТ';
+        selectedPreset = 'gost';
+        for (let index = 0; index < formatPresets.length; index++) {
+            if (formatPresets[index].id === id) {
+                selectedPreset = id;
+                name = formatPresets[index].name;
+                values = formatPresets[index].values;
+                break;
+            }
+        }
+        writeFormatValues(values);
+        const locked = selectedPreset === 'gost';
+        for (let index = 0; index < SETTING_IDS.length; index++) document.getElementById(SETTING_IDS[index]).disabled = locked;
+        document.getElementById('preset_name').value = name;
+        document.getElementById('preset_name').readOnly = locked;
+        document.getElementById('save-preset-btn').disabled = locked;
+        document.getElementById('delete-preset-btn').disabled = locked;
+        document.getElementById('preset-status').textContent = '';
+        renderFormatPresets();
+        updatePresetLabels();
+        scheduleProcess();
+    }
+
+    function newFormatPreset() {
+        let values;
+        try { values = readFormatValues(); } catch (error) { showError(error.message); return; }
+        const id = 'custom-' + Date.now();
+        formatPresets.push({ id: id, name: currentLang === 'kk' ? 'Жаңа үлгі' : 'Новый шаблон', values: values });
+        selectFormatPreset(id);
+        document.getElementById('preset-status').textContent = currentLang === 'kk' ? 'Атауын енгізіп, сақтаңыз.' : 'Укажите название и нажмите «Сохранить».';
+        document.getElementById('preset_name').focus();
+        document.getElementById('preset_name').select();
+    }
+
+    function persistFormatPresets() {
+        try { localStorage.setItem('norm_format_presets', JSON.stringify(formatPresets)); }
+        catch (error) { throw new Error(currentLang === 'kk' ? 'Браузер үлгілерді сақтауға рұқсат бермейді.' : 'Браузер не разрешает сохранить шаблоны.'); }
+    }
+
+    function saveFormatPreset() {
+        if (selectedPreset === 'gost') return;
+        try {
+            const name = document.getElementById('preset_name').value.trim();
+            if (!name || name.length > 60 || name.toUpperCase() === 'ГОСТ') throw new Error(currentLang === 'kk' ? 'Басқа атауды енгізіңіз.' : 'Укажите своё название шаблона, отличное от «ГОСТ».');
+            for (let index = 0; index < formatPresets.length; index++) {
+                if (formatPresets[index].id !== selectedPreset && formatPresets[index].name.toLowerCase() === name.toLowerCase()) throw new Error(currentLang === 'kk' ? 'Бұл атау қолданылған.' : 'Шаблон с таким названием уже существует.');
+            }
+            const values = readFormatValues();
+            for (let index = 0; index < formatPresets.length; index++) {
+                if (formatPresets[index].id === selectedPreset) {
+                    const previous = formatPresets[index];
+                    formatPresets[index] = { id: selectedPreset, name: name, values: values };
+                    try { persistFormatPresets(); } catch (error) { formatPresets[index] = previous; throw error; }
+                    break;
+                }
+            }
+            renderFormatPresets();
+            showError('');
+            document.getElementById('preset-status').textContent = currentLang === 'kk' ? 'Үлгі осы браузерде сақталды.' : 'Шаблон сохранён в этом браузере.';
+        } catch (error) { showError(error.message); }
+    }
+
+    function deleteFormatPreset() {
+        if (selectedPreset === 'gost') return;
+        for (let index = 0; index < formatPresets.length; index++) {
+            if (formatPresets[index].id === selectedPreset) {
+                const removed = formatPresets.splice(index, 1)[0];
+                try { persistFormatPresets(); }
+                catch (error) { formatPresets.splice(index, 0, removed); showError(error.message); return; }
+                break;
+            }
+        }
+        showError('');
+        selectFormatPreset('gost');
+    }
+
+    function initFormatPresets() {
+        try {
+            const saved = JSON.parse(load('format_presets') || '[]');
+            if (Array.isArray(saved)) {
+                for (let index = 0; index < saved.length; index++) {
+                    const preset = saved[index];
+                    if (!preset || typeof preset.id !== 'string' || preset.id.indexOf('custom-') !== 0 || typeof preset.name !== 'string' || !preset.name.trim() || preset.name.length > 60 || preset.name.toUpperCase() === 'ГОСТ' || !validFormatValues(preset.values)) continue;
+                    let duplicate = false;
+                    for (let position = 0; position < formatPresets.length; position++) {
+                        if (formatPresets[position].id === preset.id) duplicate = true;
+                    }
+                    if (!duplicate) formatPresets.push(preset);
+                }
+            }
+        } catch (error) { formatPresets = []; }
+        selectFormatPreset('gost');
+    }
+
+    function updateUI() {
+        const t = TEXTS[currentLang];
+        document.documentElement.lang = currentLang;
+        const typeVal = document.getElementById('document_type').value;
+
+        const map = {
+            'page-title': t.page_title,
+            'title-settings': t.title_settings, 'settings-title': t.settings_title,
+            'preview-title': t.preview_title, 'lbl-doc-type': t.document_type, 'lbl-topic': t.topic,
+            'lbl-author': t.author, 'lbl-code': t.code, 'lbl-year': t.year,
+            'lbl-font-size': t.font_size, 'lbl-line-spacing': t.line_spacing,
+            'lbl-left-margin': t.left_margin, 'lbl-right-margin': t.right_margin,
+            'lbl-top-margin': t.top_margin, 'lbl-bottom-margin': t.bottom_margin,
+            'lbl-first-line-indent': t.first_line_indent,
+            'lbl-institute': t.institute, 'lbl-department': t.department,
+            'lbl-teacher': t.teacher, 'lbl-group': t.group,
+            'process-btn': t.process_button, 'clear-btn': t.clear_button,
+            'download-word-btn': t.download_word, 'download-pdf-btn': t.download_pdf
+        };
+        for (const id in map) document.getElementById(id).innerText = map[id];
+        updateCompactLabels();
+        updatePresetLabels();
+        document.getElementById('lbl-number').innerText = currentLang === 'kk' ? 'Жұмыс нөмірі' : 'Номер работы';
+
+        if (!selectedFile) {
+            document.getElementById('upload-label').innerText = '';
+            document.getElementById('docx-preview-box').innerText = t.preview_empty;
+        }
+
+        const sel = document.getElementById('document_type');
+        sel.innerHTML = "";
+        for (let index = 0; index < ENTRIES.length; index++) {
+            const en = ENTRIES[index];
+            const o = document.createElement('option');
+            o.value = en.id; o.innerText = en[currentLang] || en.ru;
+            sel.appendChild(o);
+        }
+        if (typeVal) sel.value = typeVal;
+        if (importedDocument && importedDocument.analysis.state === 'uncertain') showTitleBoundary();
+    }
+
+    function switchLanguage(lang) {
+        currentLang = lang;
+        store('lang', lang);
+        updateUI();
+        scheduleProcess();
+    }
+
+    function showError(msg) {
+        const e = document.getElementById('error-message');
+        if (msg) { e.innerText = msg; e.style.display = 'block'; } else { e.style.display = 'none'; }
+    }
+
+    async function handleFile(input) {
+        if (input.files && input.files[0]) {
+            clearTimeout(debounceTimer);
+            const token = ++runToken;
+            selectedFile = input.files[0];
+            const file = selectedFile;
+            importPending = true;
+            invalidateResult();
+            for (let index = 0; index < FIELD_IDS.length; index++) document.getElementById(FIELD_IDS[index]).value = '';
+            importedDocument = null;
+            changedFields = {};
+            setStudents([]);
+            hideTitleBoundary();
+            sourceLang = null;
+            importSummary = '';
+            document.getElementById('document-status').textContent = '';
+            const sizeKb = (selectedFile.size / 1024).toFixed(1);
+            document.getElementById('upload-label').innerText = `${selectedFile.name} (${sizeKb} KB)`;
+            document.getElementById('process-btn').disabled = true;
+            const box = document.getElementById('docx-preview-box');
+            box.replaceChildren();
+            box.classList.add('docx-preview-empty');
+            showError('');
+            try {
+                const opened = await openDocx(file);
+                if (token !== runToken) return;
+                importedDocument = opened;
+                applyMetadata(opened.analysis.metadata);
+                importPending = false;
+                if (opened.analysis.state === 'uncertain') {
+                    showTitleBoundary();
+                    document.getElementById('process-btn').innerText = TEXTS[currentLang].process_button;
+                    return;
+                }
+                await processDocument();
+            } catch (e) {
+                if (token !== runToken) return;
+                importPending = false;
+                selectedFile = null;
+                importedDocument = null;
+                showError(e.message || TEXTS[currentLang].error_docx);
+            }
+        }
+    }
+
+    function applyMetadata(metadata) {
+        for (let index = 0; index < FIELD_IDS.length; index++) {
+            const id = FIELD_IDS[index];
+            if (!changedFields[id]) document.getElementById(id).value = metadata[id] || '';
+        }
+        if (!changedFields.title_author) {
+            let names = metadata.students || [];
+            if (!names.length && metadata.title_author) names = [metadata.title_author];
+            setStudents(names);
+        }
+        sourceLang = metadata.language;
+        if (metadata.docTypeId && !changedFields.document_type) document.getElementById('document_type').value = metadata.docTypeId;
+    }
+
+    function updateCompactLabels() {
+        const kazakh = currentLang === 'kk';
+        document.getElementById('page-title').textContent = kazakh ? 'Жұмысты рәсімдеу' : 'Оформление работы';
+        document.getElementById('title-settings').textContent = kazakh ? 'Жұмыс деректері' : 'Данные работы';
+        document.getElementById('settings-title').textContent = kazakh ? 'Рәсімдеу параметрлері' : 'Параметры оформления';
+        document.getElementById('lbl-author').textContent = kazakh ? 'Студенттер' : 'Студенты';
+        document.getElementById('department-summary').textContent = kazakh ? 'Институт және кафедра' : 'Институт и кафедра';
+        document.getElementById('add-student-btn').textContent = '+';
+        document.getElementById('add-student-btn').setAttribute('aria-label', kazakh ? 'Студент қосу' : 'Добавить студента');
+        document.getElementById('add-student-btn').title = kazakh ? 'Студент қосу' : 'Добавить студента';
+        document.getElementById('replace-file-label').textContent = kazakh ? 'Файлды ауыстыру' : 'Заменить файл';
+        document.getElementById('upload-action').textContent = TEXTS[currentLang].upload_button;
+        document.getElementById('cover-tab').textContent = kazakh ? 'Титул' : 'Титульный лист';
+        document.getElementById('document-tab').textContent = kazakh ? 'Құжат' : 'Документ';
+        document.getElementById('clear-btn').textContent = '↺';
+        document.getElementById('clear-btn').setAttribute('aria-label', kazakh ? 'Тазалау' : 'Очистить');
+        document.getElementById('process-btn').textContent = kazakh ? 'Рәсімдеуді қолдану' : 'Применить оформление';
+        document.getElementById('download-word-btn').textContent = kazakh ? 'Word жүктеп алу' : 'Скачать Word';
+        document.getElementById('download-pdf-btn').textContent = kazakh ? 'Басып шығару / PDF' : 'Печать / PDF';
+    }
+
+    function getStudents() {
+        const names = [];
+        const inputs = document.querySelectorAll('#students-list input');
+        for (let index = 0; index < inputs.length; index++) {
+            const name = inputs[index].value.trim();
+            if (name) names.push(name);
+        }
+        return names;
+    }
+
+    function addStudent(name) {
+        const row = document.createElement('div');
+        row.className = 'student-row';
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = typeof name === 'string' ? name : '';
+        input.setAttribute('aria-label', currentLang === 'kk' ? 'Студенттің аты-жөні' : 'Фамилия и имя студента');
+        input.addEventListener('input', function () {
+            changedFields.title_author = true;
+            scheduleProcess();
+        });
+        const remove = document.createElement('button');
+        remove.type = 'button';
+        remove.className = 'remove-student';
+        remove.textContent = '×';
+        remove.setAttribute('aria-label', currentLang === 'kk' ? 'Студентті өшіру' : 'Удалить студента');
+        remove.addEventListener('click', function () {
+            row.remove();
+            changedFields.title_author = true;
+            scheduleProcess();
+        });
+        row.appendChild(input);
+        row.appendChild(remove);
+        document.getElementById('students-list').appendChild(row);
+        if (typeof name !== 'string') input.focus();
+    }
+
+    function setStudents(names) {
+        const rows = document.querySelectorAll('#students-list .student-row');
+        for (let index = 1; index < rows.length; index++) rows[index].remove();
+        document.getElementById('title_author').value = names[0] || '';
+        for (let index = 1; index < names.length; index++) addStudent(names[index]);
+    }
+
+    function hideTitleBoundary() {
+        document.getElementById('title-boundary-panel').hidden = true;
+        document.getElementById('title-boundary-list').replaceChildren();
+        boundaryOptions = [];
+    }
+
+    function showTitleBoundary() {
+        invalidateResult();
+        document.getElementById('process-btn').disabled = true;
+        const panel = document.getElementById('title-boundary-panel');
+        const list = document.getElementById('title-boundary-list');
+        panel.hidden = false;
+        list.replaceChildren();
+        document.getElementById('title-boundary-message').textContent = currentLang === 'kk'
+            ? 'Титул қай жерде аяқталатынын көрсетіңіз. Төмендегі мәтін сақталады.'
+            : 'Отметьте конец титула. Текст после выбранной границы будет сохранён.';
+        document.getElementById('no-title-btn').textContent = currentLang === 'kk' ? 'Құжатта титул жоқ' : 'В документе нет титула';
+        boundaryOptions = getBoundaryOptions(importedDocument.xmlDoc);
+        for (let index = 0; index < boundaryOptions.length; index++) {
+            const row = document.createElement('div');
+            row.style.cssText = 'padding:10px;border-bottom:1px solid #d4dbd6;overflow-wrap:anywhere';
+            const text = document.createElement('p');
+            text.textContent = boundaryOptions[index].text;
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'st-btn btn-outline';
+            button.style.marginTop = '8px';
+            button.textContent = currentLang === 'kk' ? 'Титул осы жерде аяқталады' : 'Титул заканчивается здесь';
+            button.dataset.index = index;
+            button.addEventListener('click', selectTitleBoundary);
+            row.appendChild(text);
+            row.appendChild(button);
+            list.appendChild(row);
+        }
+    }
+
+    async function selectTitleBoundary(event) {
+        const option = boundaryOptions[Number(event.currentTarget.dataset.index)];
+        if (!option || !importedDocument) return;
+        importedDocument.analysis.state = 'existing';
+        importedDocument.analysis.boundary = { blockIndex: option.blockIndex, breakIndex: option.breakIndex };
+        importedDocument.analysis.metadata = metadataFromBoundary(importedDocument.xmlDoc, option);
+        applyMetadata(importedDocument.analysis.metadata);
+        hideTitleBoundary();
+        await processDocument();
+    }
+
+    async function confirmNoTitle() {
+        if (!importedDocument) return;
+        importedDocument.analysis.state = 'absent';
+        importedDocument.analysis.boundary = null;
+        hideTitleBoundary();
+        await processDocument();
+    }
+
+    function invalidateResult() {
+        resultBlob = null;
+        resultName = null;
+        document.getElementById('download-word-btn').disabled = true;
+        document.getElementById('download-pdf-btn').disabled = true;
+    }
+
+    function scheduleProcess() {
+        if (!selectedFile || importPending) return;
+        runToken++;
+        invalidateResult();
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(processDocument, 500);
+    }
+
+    const PPR_ORDER = ['pStyle','keepNext','keepLines','pageBreakBefore','framePr','widowControl','numPr','suppressLineNumbers','pBdr','shd','tabs','suppressAutoHyphens','kinsoku','wordWrap','overflowPunct','topLinePunct','autoSpaceDE','autoSpaceDN','bidi','adjustRightInd','snapToGrid','spacing','ind','contextualSpacing','mirrorIndents','suppressOverlap','jc','textDirection','textAlignment','textboxTightWrap','outlineLvl','divId','cnfStyle','rPr','sectPr','pPrChange'];
+    const RPR_ORDER = ['rStyle','rFonts','b','bCs','i','iCs','caps','smallCaps','strike','dstrike','outline','shadow','emboss','imprint','noProof','snapToGrid','vanish','webHidden','color','spacing','w','kern','position','sz','szCs','highlight','u','effect','bdr','shd','fitText','vertAlign','rtl','cs','em','lang','eastAsianLayout','specVanish','oMath'];
+    const SECT_ORDER = ['headerReference','footerReference','footnotePr','endnotePr','type','pgSz','pgMar','paperSrc','pgBorders','lnNumType','pgNumType','cols','formProt','vAlign','noEndnote','titlePg','textDirection','bidi','rtlGutter','docGrid','printerSettings','sectPrChange'];
+
+    function child(parent, name) {
+        for (const c of parent.children) if (c.localName === name && c.namespaceURI === W) return c;
+        return null;
+    }
+    function setAttrs(e, attrs) { for (const k in attrs) e.setAttributeNS(W, 'w:' + k, String(attrs[k])); }
+    function ensure(parent, name, order) {
+        let c = child(parent, name);
+        if (c) return c;
+        c = parent.ownerDocument.createElementNS(W, 'w:' + name);
+        const idx = order.indexOf(name);
+        let before = null;
+        for (const x of parent.children) {
+            if (order.indexOf(x.localName) > idx) { before = x; break; }
+        }
+        parent.insertBefore(c, before);
+        return c;
+    }
+    function removeAll(parent, name) {
+        for (const c of Array.from(parent.children)) if (c.localName === name) parent.removeChild(c);
+    }
+    function inTable(node) {
+        for (let n = node.parentNode; n; n = n.parentNode) if (n.localName === 'tbl') return true;
+        return false;
+    }
+    function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function readSettings() {
+        readFormatValues();
+        function num(id, def) {
+            const input = document.getElementById(id);
+            const v = input.value === '' ? def : Number(input.value);
+            if (!Number.isFinite(v) || v < Number(input.min) || v > Number(input.max)) {
+                throw new Error((currentLang === 'kk' ? 'Жарамсыз параметр: ' : 'Недопустимый параметр: ') + id);
+            }
+            return v;
+        }
+        return {
+            fontFamily: document.getElementById('font_family').value || FONT,
+            fontSize: num('font_size', 14), lineSpacing: num('line_spacing', 1.5),
+            left: num('left_margin', 30), right: num('right_margin', 20),
+            top: num('top_margin', 20), bottom: num('bottom_margin', 20),
+            indent: num('first_line_indent', 12.5),
+            docTypeId: document.getElementById('document_type').value,
+            number: document.getElementById('title_number').value.trim(),
+            topic: document.getElementById('title_topic').value.trim(),
+            author: document.getElementById('title_author').value.trim(),
+            students: getStudents(),
+            code: document.getElementById('title_code').value.trim(),
+            year: document.getElementById('title_year').value.trim(),
+            institute: document.getElementById('title_institute').value.trim(),
+            department: document.getElementById('title_department').value.trim(),
+            teacher: document.getElementById('title_teacher').value.trim(),
+            group: document.getElementById('title_group').value.trim()
+        };
+    }
+
+    function formatRun(r, s, bold) {
+        let rPr = child(r, 'rPr');
+        if (!rPr) {
+            rPr = r.ownerDocument.createElementNS(W, 'w:rPr');
+            r.insertBefore(rPr, r.firstChild);
+        }
+        formatRPr(rPr, s, bold);
+    }
+    function formatRPr(rPr, s, bold) {
+        const f = ensure(rPr, 'rFonts', RPR_ORDER);
+        const cur = f.getAttributeNS(W, 'ascii') || '';
+        if (!/courier|consolas|mono|lucida console/i.test(cur)) { // моноширинный шрифт (код) оставляем
+            for (const a of ['asciiTheme', 'hAnsiTheme', 'eastAsiaTheme', 'csTheme']) f.removeAttributeNS(W, a);
+            const font = s.fontFamily || FONT;
+            setAttrs(f, { ascii: font, hAnsi: font, cs: font, eastAsia: font });
+        }
+        const half = Math.round(s.fontSize * 2);
+        setAttrs(ensure(rPr, 'sz', RPR_ORDER), { val: half });
+        setAttrs(ensure(rPr, 'szCs', RPR_ORDER), { val: half });
+        if (bold) { ensure(rPr, 'b', RPR_ORDER); ensure(rPr, 'bCs', RPR_ORDER); }
+    }
+
+    // стили-заголовки (по имени "heading N" / outlineLvl) из styles.xml
+    function headingStyleIds(stDoc) {
+        const ids = { headings: [], listStyles: [] };
+        if (!stDoc) return ids;
+        const bases = {};
+        let styleCount = 0;
+        for (const st of Array.from(stDoc.getElementsByTagNameNS(W, 'style'))) {
+            const id = st.getAttributeNS(W, 'styleId');
+            const nm = child(st, 'name');
+            const name = nm ? (nm.getAttributeNS(W, 'val') || '') : '';
+            const pPr = child(st, 'pPr');
+            if (pPr && child(pPr, 'numPr')) ids.listStyles.push(id);
+            const base = child(st, 'basedOn');
+            if (base) { bases[id] = base.getAttributeNS(W, 'val'); styleCount++; }
+            if (/^(heading|заголовок|title|название)/i.test(name) || (pPr && child(pPr, 'outlineLvl'))) ids.headings.push(id);
+        }
+        for (let i = 0; i < styleCount; i++) {
+            let changed = false;
+            for (const id in bases) {
+                const base = bases[id];
+                if (ids.headings.indexOf(base) >= 0 && ids.headings.indexOf(id) < 0) { ids.headings.push(id); changed = true; }
+                if (ids.listStyles.indexOf(base) >= 0 && ids.listStyles.indexOf(id) < 0) { ids.listStyles.push(id); changed = true; }
+            }
+            if (!changed) break;
+        }
+        return ids;
+    }
+
+    // ширина текста в твипсах -> сжимаем таблицы и рисунки, которые не влезают в новые поля
+    function fitWidths(xmlDoc, textW, settings) {
+        function pageSpace(node) {
+            let width = textW;
+            let height = 16838 - Math.round(((settings && settings.top + settings.bottom) || 40) * MM);
+            if (!settings) return { width: width, height: height };
+            const body = xmlDoc.getElementsByTagNameNS(W, 'body')[0];
+            let top = node;
+            while (top.parentNode && top.parentNode !== body) top = top.parentNode;
+            for (let element = top; element; element = element.nextElementSibling) {
+                const section = element.localName === 'sectPr' ? element : element.getElementsByTagNameNS(W, 'sectPr')[0];
+                if (!section) continue;
+                const size = child(section, 'pgSz');
+                const landscape = size && (size.getAttributeNS(W, 'orient') === 'landscape' || Number(size.getAttributeNS(W, 'w')) > Number(size.getAttributeNS(W, 'h')));
+                width = (landscape ? 16838 : 11906) - Math.round((settings.left + settings.right) * MM);
+                height = (landscape ? 11906 : 16838) - Math.round((settings.top + settings.bottom) * MM);
+                const columns = child(section, 'cols');
+                if (columns) {
+                    const count = Number(columns.getAttributeNS(W, 'num')) || columns.getElementsByTagNameNS(W, 'col').length || 1;
+                    const gap = Number(columns.getAttributeNS(W, 'space')) || 0;
+                    width = (width - gap * (count - 1)) / count;
+                    const column = child(columns, 'col');
+                    if (column && Number(column.getAttributeNS(W, 'w')) > 0) width = Math.min(width, Number(column.getAttributeNS(W, 'w')));
+                }
+                break;
+            }
+            for (let parent = node.parentNode; parent && parent !== body; parent = parent.parentNode) {
+                if (parent.localName !== 'tc') continue;
+                const properties = child(parent, 'tcPr');
+                const cellWidth = properties && child(properties, 'tcW');
+                if (cellWidth && cellWidth.getAttributeNS(W, 'type') === 'dxa') width = Math.min(width, Math.max(1, Number(cellWidth.getAttributeNS(W, 'w')) - 216));
+            }
+            return { width: width, height: height };
+        }
+        function widthFor(node) {
+            return pageSpace(node).width;
+        }
+        for (const tbl of Array.from(xmlDoc.getElementsByTagNameNS(W, 'tbl'))) {
+            const grid = child(tbl, 'tblGrid');
+            if (!grid) continue;
+            const cols = [];
+            let total = 0;
+            for (let index = 0; index < grid.children.length; index++) {
+                const column = grid.children[index];
+                if (column.localName !== 'gridCol') continue;
+                cols.push(column);
+                total += parseInt(column.getAttributeNS(W, 'w'), 10) || 0;
+            }
+            const width = widthFor(tbl);
+            if (!total || total <= width) continue;
+            const k = width / total;
+            for (let index = 0; index < cols.length; index++) {
+                setAttrs(cols[index], { w: Math.floor((parseInt(cols[index].getAttributeNS(W, 'w'), 10) || 0) * k) });
+            }
+            for (const w of Array.from(tbl.getElementsByTagNameNS(W, 'tcW')).concat(Array.from(tbl.getElementsByTagNameNS(W, 'tblW')))) {
+                let owner = w.parentNode;
+                while (owner && owner.localName !== 'tbl') owner = owner.parentNode;
+                if (owner !== tbl) continue;
+                if (w.getAttributeNS(W, 'type') === 'dxa') setAttrs(w, { w: Math.floor((parseInt(w.getAttributeNS(W, 'w'), 10) || 0) * k) });
+            }
+        }
+        const WP = 'http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing';
+        const A = 'http://schemas.openxmlformats.org/drawingml/2006/main';
+        const anchors = Array.from(xmlDoc.getElementsByTagNameNS(WP, 'anchor'));
+        for (let index = 0; index < anchors.length; index++) {
+            const anchor = anchors[index];
+            const inline = xmlDoc.createElementNS(WP, 'wp:inline');
+            for (const name of ['extent', 'effectExtent', 'docPr', 'cNvGraphicFramePr']) {
+                const elements = anchor.getElementsByTagNameNS(WP, name);
+                if (elements.length) inline.appendChild(elements[0].cloneNode(true));
+            }
+            const graphic = anchor.getElementsByTagNameNS(A, 'graphic')[0];
+            if (graphic) {
+                inline.appendChild(graphic.cloneNode(true));
+                anchor.parentNode.replaceChild(inline, anchor);
+            }
+        }
+        for (const inl of Array.from(xmlDoc.getElementsByTagNameNS(WP, 'inline'))) {
+            const space = pageSpace(inl);
+            const maxWidth = Math.max(1, space.width - 120) * 635;
+            const maxHeight = Math.max(1, space.height - 960) * 635;
+            const ext = inl.getElementsByTagNameNS(WP, 'extent')[0];
+            if (!ext) continue;
+            const cx = parseInt(ext.getAttribute('cx'), 10), cy = parseInt(ext.getAttribute('cy'), 10);
+            if (!(cx > 0 && cy > 0)) continue;
+            const scale = Math.min(1, maxWidth / cx, maxHeight / cy);
+            ext.setAttribute('cx', String(Math.floor(cx * scale)));
+            ext.setAttribute('cy', String(Math.floor(cy * scale)));
+            const transforms = inl.getElementsByTagNameNS(A, 'xfrm');
+            for (let index = 0; index < transforms.length; index++) {
+                const dimensions = transforms[index].getElementsByTagNameNS(A, 'ext')[0];
+                if (!dimensions) continue;
+                dimensions.setAttribute('cx', String(Math.floor(Number(dimensions.getAttribute('cx')) * scale)));
+                dimensions.setAttribute('cy', String(Math.floor(Number(dimensions.getAttribute('cy')) * scale)));
+            }
+            const effects = inl.getElementsByTagNameNS(WP, 'effectExtent')[0];
+            if (effects) {
+                for (const side of ['l', 't', 'r', 'b']) {
+                    if (effects.hasAttribute(side)) effects.setAttribute(side, String(Math.floor(Number(effects.getAttribute(side)) * scale)));
+                }
+            }
+            for (let parent = inl.parentNode; parent; parent = parent.parentNode) {
+                if (parent.localName !== 'tr') continue;
+                const rowProperties = child(parent, 'trPr');
+                const rowHeight = rowProperties && child(rowProperties, 'trHeight');
+                if (rowHeight && rowHeight.getAttributeNS(W, 'hRule') === 'exact') setAttrs(rowHeight, { hRule: 'atLeast' });
+            }
+        }
+        const vml = 'urn:schemas-microsoft-com:vml';
+        const shapes = xmlDoc.getElementsByTagNameNS(vml, 'shape');
+        for (let index = 0; index < shapes.length; index++) {
+            const shape = shapes[index];
+            if (!shape.getElementsByTagNameNS(vml, 'imagedata').length) continue;
+            const style = shape.getAttribute('style') || '';
+            const width = style.match(/(?:^|;)\s*width\s*:\s*([\d.]+)(pt|px|in|cm|mm)/i);
+            const height = style.match(/(?:^|;)\s*height\s*:\s*([\d.]+)(pt|px|in|cm|mm)/i);
+            if (!width || !height) continue;
+            const units = { pt: 20, px: 15, in: 1440, cm: MM * 10, mm: MM };
+            const space = pageSpace(shape);
+            const scale = Math.min(1, (space.width - 120) / (Number(width[1]) * units[width[2].toLowerCase()]), (space.height - 960) / (Number(height[1]) * units[height[2].toLowerCase()]));
+            if (scale < 1 && scale > 0) {
+                let resized = style.replace(width[0], width[0].replace(width[1] + width[2], (Number(width[1]) * scale).toFixed(3) + width[2]));
+                resized = resized.replace(height[0], height[0].replace(height[1] + height[2], (Number(height[1]) * scale).toFixed(3) + height[2]));
+                shape.setAttribute('style', resized);
+            }
+        }
+    }
+
+    // удаление титульного листа, уже имеющегося в загруженном документе
+    function removeExistingTitle(xmlDoc) {
+        // титульников может быть несколько подряд (например, файл уже обрабатывался ранее)
+        let n = 0;
+        while (n < 4 && removeOneTitle(xmlDoc)) n++;
+        return n > 0;
+    }
+
+    function removeOneTitle(xmlDoc) {
+        const body = xmlDoc.getElementsByTagNameNS(W, 'body')[0];
+        const range = titleRange(xmlDoc);
+        if (!range) return false;
+        for (const el of range) body.removeChild(el);
+        return true;
+    }
+
+    function formatBody(xmlDoc, s, headStyles) {
+        const body = xmlDoc.getElementsByTagNameNS(W, 'body')[0];
+        const line = Math.round(s.lineSpacing * 240);
+        const indent = Math.round(s.indent * MM);
+        fitWidths(xmlDoc, 11906 - Math.round((s.left + s.right) * MM), s);
+
+        for (const p of Array.from(xmlDoc.getElementsByTagNameNS(W, 'p'))) {
+            let pPr = child(p, 'pPr');
+            if (!pPr) { pPr = xmlDoc.createElementNS(W, 'w:pPr'); p.insertBefore(pPr, p.firstChild); }
+
+            const pStyle = child(pPr, 'pStyle');
+            const style = pStyle ? (pStyle.getAttributeNS(W, 'val') || '') : '';
+            const heading = headStyles.headings.indexOf(style) >= 0 || /^(heading|заголовок|title|название)/i.test(style) || !!child(pPr, 'outlineLvl');
+            const hasImage = p.getElementsByTagNameNS(W, 'drawing').length > 0 || p.getElementsByTagNameNS(W, 'pict').length > 0;
+            const imageOnly = hasImage && !paragraphText(p);
+            const listed = !!child(pPr, 'numPr') || headStyles.listStyles.indexOf(style) >= 0;
+            const table = inTable(p);
+            const hasText = p.textContent.trim().length > 0;
+            const jcEl = child(pPr, 'jc');
+            const jc = jcEl ? jcEl.getAttributeNS(W, 'val') : '';
+            const aligned = jc === 'center' || jc === 'right' || jc === 'end';
+
+            const sp = ensure(pPr, 'spacing', PPR_ORDER);
+            for (const a of ['beforeLines', 'afterLines', 'beforeAutospacing', 'afterAutospacing']) sp.removeAttributeNS(W, a);
+            setAttrs(sp, { line: table ? 240 : line, lineRule: 'auto', before: 0, after: heading ? 240 : 0 });
+            if (hasImage) {
+                setAttrs(sp, { line: 240, lineRule: 'auto', before: 0, after: 0 });
+                if (imageOnly) {
+                    setAttrs(ensure(pPr, 'keepLines', PPR_ORDER), { val: 1 });
+                    removeAll(pPr, 'keepNext');
+                }
+            }
+
+            if (!table && !listed) {
+                const ind = ensure(pPr, 'ind', PPR_ORDER);
+                for (const a of ['firstLine', 'hanging', 'firstLineChars', 'hangingChars']) ind.removeAttributeNS(W, a);
+                if (!heading && hasText && !aligned) setAttrs(ind, { firstLine: indent });
+                else setAttrs(ind, { firstLine: 0 });
+            }
+            if (!table && !heading && hasText && !aligned) setAttrs(ensure(pPr, 'jc', PPR_ORDER), { val: 'both' });
+            if (imageOnly && !table) setAttrs(ensure(pPr, 'jc', PPR_ORDER), { val: 'center' });
+            if (heading) setAttrs(sp, { before: 240, after: 240 });
+
+            const markRPr = child(pPr, 'rPr');
+            if (markRPr) formatRPr(markRPr, s, heading);
+            for (const r of Array.from(p.getElementsByTagNameNS(W, 'r'))) formatRun(r, s, heading);
+        }
+
+        // страница A4 + поля + нумерация страниц
+        const sects = [];
+        const allSections = xmlDoc.getElementsByTagNameNS(W, 'sectPr');
+        for (let index = 0; index < allSections.length; index++) {
+            if (allSections[index].parentNode.localName !== 'pPrChange') sects.push(allSections[index]);
+        }
+        if (!sects.length) {
+            const sp = xmlDoc.createElementNS(W, 'w:sectPr');
+            body.appendChild(sp);
+            sects.push(sp);
+        }
+        for (let index = 0; index < sects.length; index++) {
+            const sp = sects[index];
+            const sz = ensure(sp, 'pgSz', SECT_ORDER);
+            const landscape = sz.getAttributeNS(W, 'orient') === 'landscape' || Number(sz.getAttributeNS(W, 'w')) > Number(sz.getAttributeNS(W, 'h'));
+            setAttrs(sz, landscape ? { w: 16838, h: 11906, orient: 'landscape' } : { w: 11906, h: 16838 });
+            setAttrs(ensure(sp, 'pgMar', SECT_ORDER), {
+                top: Math.round(s.top * MM), right: Math.round(s.right * MM),
+                bottom: Math.round(s.bottom * MM), left: Math.round(s.left * MM),
+                header: 709, footer: 709, gutter: 0
+            });
+            let hasFooter = false;
+            for (let childIndex = 0; childIndex < sp.children.length; childIndex++) {
+                const reference = sp.children[childIndex];
+                if (reference.localName === 'footerReference' && reference.getAttributeNS(W, 'type') === 'default') hasFooter = true;
+            }
+            if (hasFooter) continue;
+            const fr = xmlDoc.createElementNS(W, 'w:footerReference');
+            setAttrs(fr, { type: 'default' });
+            fr.setAttributeNS(R, 'r:id', s.footerId || 'rIdGostFooter');
+            let before = null;
+            for (let childIndex = 0; childIndex < sp.children.length; childIndex++) {
+                if (SECT_ORDER.indexOf(sp.children[childIndex].localName) > SECT_ORDER.indexOf('footerReference')) {
+                    before = sp.children[childIndex];
+                    break;
+                }
+            }
+            sp.insertBefore(fr, before || null);
+        }
+    }
+
+    const TITLE_LABELS = [
+        ['institute', /институт$/i],
+        ['department', /кафедра$/i],
+        ['topic', /(тема|тақырыбы|тақырып|subject matter)$/i],
+        ['teacher', /(преподаватель|оқытушы|оқытушының аты-жөні|checked by)$/i],
+        ['student', /(студент|магистрант|written by|witten by|білім алушының аты-жөні|білім алушы)$/i],
+        ['specialty', /(специальность|мамандығы|мамандық шифрі|мамандық)$/i],
+        ['group', /(группа|тобы|топ|group)$/i]
+    ];
+
+    function pickTemplate(entry, language) {
+        const order = [language || sourceLang || currentLang, 'ru', 'kk', 'en'];
+        for (const l of order) if (entry.t[l] !== undefined) return { key: String(entry.t[l]), lang: l };
+        return null;
+    }
+
+    function labelOf(buf) {
+        const b = buf.replace(/[\s:\u00ac\u00ad_.,;]+$/g, '').trim();
+        for (let index = 0; index < TITLE_LABELS.length; index++) {
+            if (TITLE_LABELS[index][1].test(b)) return TITLE_LABELS[index][0];
+        }
+        return null;
+    }
+
+    // подставляет значения вместо линий ____ после подписей (Тема, Студент, Группа ...) и год
+    function fillTemplate(container, v) {
+        const paras = Array.from(container.getElementsByTagNameNS(W, 'p'));
+        for (let idx = 0; idx < paras.length; idx++) {
+            const p = paras[idx];
+            const ts = Array.from(p.getElementsByTagNameNS(W, 't'));
+            if (!ts.length) continue;
+            let full = '';
+            for (let textIndex = 0; textIndex < ts.length; textIndex++) full += ts[textIndex].textContent;
+
+            // год: «Алматы 2018 г»
+            if (/^\s*(алматы|almaty)\s+\d{4}/i.test(full)) {
+                ts[0].textContent = full.replace(/\b\d{4}\b/, v.year || '____');
+                for (let textIndex = 1; textIndex < ts.length; textIndex++) ts[textIndex].textContent = '';
+                continue;
+            }
+            if (!/_{3,}/.test(full)) continue;
+
+            // казахские формы: «______ институты», «______ кафедрасы»
+            const suffix = /институты\s*$/i.test(full) ? 'institute' : /кафедрасы\s*$/i.test(full) ? 'department' : null;
+
+            // подпись может стоять в предыдущем абзаце (форма «Зертханалық»)
+            let prevText = '';
+            if (idx > 0 && !full.replace(/[_\s]/g, '')) prevText = paras[idx - 1].textContent;
+
+            let buf = prevText, lastFilled = false;
+            for (const t of ts) {
+                const parts = t.textContent.split(/(_+)/);
+                let out = '';
+                for (const part of parts) {
+                    if (/^_+$/.test(part)) {
+                        let name = suffix || labelOf(buf);
+                        const val = name ? v[name] : '';
+                        if (val) {
+                            const sep = (!buf || /[\s:]$/.test(buf) || /[\s:]$/.test(out)) ? '' : ' ';
+                            out += sep + val + (suffix ? ' ' : '');
+                            lastFilled = true;
+                        }
+                        else if (!buf.trim() && lastFilled) { /* продолжение подчёркивания после заполненного поля */ }
+                        else { out += part; lastFilled = false; }
+                        buf = '';
+                    } else {
+                        out += part;
+                        if (part.trim()) lastFilled = false;
+                        buf += part;
+                    }
+                }
+                t.textContent = out;
+                t.setAttribute('xml:space', 'preserve');
+            }
+        }
+    }
+
+    function prepareTitle(root, settings, entry, language) {
+        const paragraphs = Array.from(root.getElementsByTagNameNS(W, 'p'));
+        let titleParagraph = null;
+        let studentParagraph = null;
+        for (let index = 0; index < paragraphs.length; index++) {
+            const paragraph = paragraphs[index];
+            if (inTable(paragraph)) continue;
+            const text = paragraphText(paragraph);
+            const type = workType(text);
+            if (!titleParagraph && type && (type === entry.id || (entry.id === 'en_lab' && type === 'lab') || (entry.id === 'en_report' && type === 'otchet'))) titleParagraph = paragraph;
+            if (!studentParagraph && /_{3}/.test(text) && /студент|магистрант|written by|witten by|білім алушы/i.test(text)) studentParagraph = paragraph;
+        }
+        const names = settings.students && settings.students.length ? settings.students : [settings.author || ''];
+        const data = {
+            topic: settings.topic, student: names[0], specialty: settings.code, year: settings.year,
+            institute: settings.institute, department: settings.department, teacher: settings.teacher, group: settings.group
+        };
+        fillTemplate(root, data);
+        if (!studentParagraph && names[0]) {
+            for (let index = 0; index < paragraphs.length; index++) {
+                if (!inTable(paragraphs[index]) && paragraphText(paragraphs[index]).indexOf(names[0]) >= 0) {
+                    studentParagraph = paragraphs[index];
+                    break;
+                }
+            }
+        }
+        if (studentParagraph && names.length > 1 && names[0]) {
+            let previous = studentParagraph;
+            for (let index = 1; index < names.length; index++) {
+                const copy = studentParagraph.cloneNode(true);
+                const textNodes = copy.getElementsByTagNameNS(W, 't');
+                const text = names[index];
+                if (textNodes.length) {
+                    textNodes[0].textContent = text;
+                    for (let position = 1; position < textNodes.length; position++) textNodes[position].textContent = '';
+                }
+                const properties = child(copy, 'pPr');
+                if (properties) removeAll(properties, 'sectPr');
+                const control = copy.ownerDocument.createElementNS(W, 'w:sdt');
+                const controlProperties = ensure(control, 'sdtPr', ['sdtPr', 'sdtContent']);
+                setAttrs(ensure(controlProperties, 'tag', ['tag']), { val: 'norm-student-v1' });
+                ensure(control, 'sdtContent', ['sdtPr', 'sdtContent']).appendChild(copy);
+                previous.parentNode.insertBefore(control, previous.nextSibling);
+                previous = control;
+            }
+        }
+        if (!titleParagraph) throw new Error('В шаблоне не найден заголовок работы: ' + entry.ru);
+        if (settings.number) {
+            if (!/^\d+(?:[.-]\d+)*$/.test(settings.number)) throw new Error('Номер работы должен содержать цифры.');
+            const textNodes = titleParagraph.getElementsByTagNameNS(W, 't');
+            if (textNodes.length) textNodes[textNodes.length - 1].textContent += ' №' + settings.number;
+        }
+        const allParagraphs = root.getElementsByTagNameNS(W, 'p');
+        for (let index = 0; index < allParagraphs.length; index++) {
+            const paragraph = allParagraphs[index];
+            const runs = paragraph.getElementsByTagNameNS(W, 'r');
+            const fontSettings = { fontSize: settings.fontSize, fontFamily: settings.fontFamily };
+            if (inTable(paragraph)) fontSettings.fontSize = Math.min(10, settings.fontSize);
+            for (let position = 0; position < runs.length; position++) {
+                if (runs[position].getElementsByTagNameNS(W, 't').length) formatRun(runs[position], fontSettings, false);
+            }
+        }
+        const properties = ensure(titleParagraph, 'pPr', PPR_ORDER);
+        setAttrs(ensure(properties, 'jc', PPR_ORDER), { val: 'center' });
+        const indent = ensure(properties, 'ind', PPR_ORDER);
+        for (const attribute of ['hanging', 'leftChars', 'rightChars', 'firstLineChars', 'hangingChars']) indent.removeAttributeNS(W, attribute);
+        setAttrs(indent, { left: 0, right: 0, firstLine: 0 });
+        setAttrs(ensure(properties, 'spacing', PPR_ORDER), { before: 0, after: 120, line: Math.round(settings.lineSpacing * 240), lineRule: 'auto' });
+        setAttrs(ensure(properties, 'keepNext', PPR_ORDER), { val: 1 });
+        const runs = titleParagraph.getElementsByTagNameNS(W, 'r');
+        for (let index = 0; index < runs.length; index++) {
+            formatRun(runs[index], settings, true);
+            const runProperties = child(runs[index], 'rPr');
+            setAttrs(ensure(runProperties, 'b', RPR_ORDER), { val: 1 });
+            setAttrs(ensure(runProperties, 'bCs', RPR_ORDER), { val: 1 });
+            setAttrs(ensure(runProperties, 'color', RPR_ORDER), { val: '000000' });
+            removeAll(runProperties, 'vanish');
+            removeAll(runProperties, 'webHidden');
+        }
+    }
+
+    function insertTitlePage(xmlDoc, s) {
+        const data = window.TITLE_DATA;
+        let entry = null;
+        for (let index = 0; index < ENTRIES.length; index++) {
+            if (ENTRIES[index].id === s.docTypeId) { entry = ENTRIES[index]; break; }
+        }
+        if (!entry) throw new Error('Выберите тип работы.');
+        const pick = pickTemplate(entry, s.language);
+        if (!data || !pick || !data.blocks[pick.key]) throw new Error('title template missing');
+
+        const frag = new DOMParser().parseFromString(`<root ${data.ns} xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">${data.blocks[pick.key]}</root>`, 'application/xml');
+        if (frag.getElementsByTagName('parsererror').length) throw new Error('title page xml');
+        const root = frag.documentElement;
+        prepareTitle(root, s, entry, pick.lang);
+        const wp = 'http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing';
+        let drawingId = 0;
+        const drawingProperties = xmlDoc.getElementsByTagNameNS(wp, 'docPr');
+        for (let index = 0; index < drawingProperties.length; index++) drawingId = Math.max(drawingId, Number(drawingProperties[index].getAttribute('id')) || 0);
+        for (const e of Array.from(root.getElementsByTagNameNS(wp, 'docPr'))) e.setAttribute('id', String(++drawingId));
+
+        // последний элемент шаблона несёт разрыв секции (поля — как в оригинальном бланке)
+        const sect = new DOMParser().parseFromString(`<w:sectPr xmlns:w="${W}">${data.sect}</w:sectPr>`, 'application/xml').documentElement;
+        setAttrs(ensure(sect, 'pgMar', SECT_ORDER), {
+            top: Math.round(s.top * MM), bottom: Math.round(s.bottom * MM),
+            left: Math.round(s.left * MM), right: Math.round(s.right * MM), header: 709, footer: 709, gutter: 0
+        });
+        let last = root.lastElementChild;
+        if (!last || last.localName !== 'p') {
+            last = frag.createElementNS(W, 'w:p');
+            const pPr0 = frag.createElementNS(W, 'w:pPr');
+            const sp0 = frag.createElementNS(W, 'w:spacing');
+            setAttrs(sp0, { before: 0, after: 0, line: 20, lineRule: 'exact' });
+            pPr0.appendChild(sp0);
+            last.appendChild(pPr0);
+            root.appendChild(last);
+        }
+        let lpPr = child(last, 'pPr');
+        if (!lpPr) { lpPr = frag.createElementNS(W, 'w:pPr'); last.insertBefore(lpPr, last.firstChild); }
+        const old = child(lpPr, 'sectPr');
+        if (old) lpPr.removeChild(old);
+        const slot = ensure(lpPr, 'sectPr', PPR_ORDER);
+        for (const c of Array.from(sect.children)) slot.appendChild(frag.importNode(c, true));
+
+        const body = xmlDoc.getElementsByTagNameNS(W, 'body')[0];
+        const wrapper = xmlDoc.createElementNS(W, 'w:sdt');
+        const props = xmlDoc.createElementNS(W, 'w:sdtPr');
+        const tag = xmlDoc.createElementNS(W, 'w:tag');
+        setAttrs(tag, { val: 'norm-title-v1' });
+        props.appendChild(tag);
+        wrapper.appendChild(props);
+        const content = xmlDoc.createElementNS(W, 'w:sdtContent');
+        wrapper.appendChild(content);
+        for (const el of Array.from(root.children)) content.appendChild(xmlDoc.importNode(el, true));
+        body.insertBefore(wrapper, body.firstChild);
+
+        // какие картинки использует шаблон
+        const used = [];
+        for (const match of data.blocks[pick.key].matchAll(/r:embed="(rIdTpl\d+)"/g)) {
+            if (used.indexOf(match[1]) < 0) used.push(match[1]);
+        }
+        return used;
+    }
+
+    function footerXml(s) {
+        const sz = Math.round(s.fontSize * 2);
+        const rpr = `<w:rPr><w:rFonts w:ascii="${esc(s.fontFamily || FONT)}" w:hAnsi="${esc(s.fontFamily || FONT)}" w:cs="${esc(s.fontFamily || FONT)}" w:eastAsia="${esc(s.fontFamily || FONT)}"/><w:sz w:val="${sz}"/><w:szCs w:val="${sz}"/></w:rPr>`;
+        return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:ftr xmlns:w="${W}" xmlns:r="${R}"><w:p><w:pPr><w:jc w:val="center"/></w:pPr>` +
+            `<w:fldSimple w:instr=" PAGE "><w:r>${rpr}<w:t>1</w:t></w:r></w:fldSimple></w:p></w:ftr>`;
+    }
+
+    async function buildDocx(file, settings, openedDocument) {
+        let source = openedDocument;
+        if (!source || source.file !== file) source = await openDocx(file);
+        if (source.analysis.state === 'uncertain') {
+            const error = new Error('Укажите конец титула.');
+            error.code = 'TITLE_BOUNDARY';
+            throw error;
+        }
+        const zip = source.zip.clone();
+        const xmlDoc = source.xmlDoc.cloneNode(true);
+        const s = {};
+        for (const key in settings) s[key] = settings[key];
+        s.language = source.analysis.metadata.language;
+        const parser = new DOMParser();
+        const pkg = await preparePackage(zip);
+        s.footerId = pkg.footerId;
+
+        const stFile0 = zip.file('word/styles.xml');
+        const stDoc0 = stFile0 ? parser.parseFromString(await stFile0.async('string'), 'application/xml') : null;
+        const titleRemoved = source.analysis.state === 'existing';
+        if (titleRemoved) removeTitlePrefix(xmlDoc, source.analysis.boundary);
+        formatBody(xmlDoc, s, headingStyleIds(stDoc0));
+        const usedMedia = insertTitlePage(xmlDoc, s);
+        fitWidths(xmlDoc, 11906 - Math.round((s.left + s.right) * MM), s);
+
+        // шрифт и размер по умолчанию в styles.xml
+        const stFile = zip.file('word/styles.xml');
+        if (stFile) {
+            const st = parser.parseFromString(await stFile.async('string'), 'application/xml');
+            const rd = st.getElementsByTagNameNS(W, 'rPrDefault')[0];
+            const rPr = rd && child(rd, 'rPr');
+            if (rPr) {
+                formatRPr(rPr, s, false);
+                zip.file('word/styles.xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' + new XMLSerializer().serializeToString(st.documentElement));
+            }
+        }
+
+        // Связи шаблона получают отдельные идентификаторы.
+        let usesFooter = false;
+        const footerReferences = xmlDoc.getElementsByTagNameNS(W, 'footerReference');
+        for (let index = 0; index < footerReferences.length; index++) {
+            if (footerReferences[index].getAttributeNS(R, 'id') === pkg.footerId) usesFooter = true;
+        }
+        if (usesFooter) zip.file('word/' + pkg.footerName, footerXml(s));
+        else {
+            const relationships = pkg.relDoc.documentElement.children;
+            for (let index = relationships.length - 1; index >= 0; index--) {
+                if (relationships[index].getAttribute('Id') === pkg.footerId) relationships[index].remove();
+            }
+            const types = pkg.ctDoc.documentElement.children;
+            for (let index = types.length - 1; index >= 0; index--) {
+                if (types[index].getAttribute('PartName') === '/word/' + pkg.footerName) types[index].remove();
+            }
+        }
+        const title = xmlDoc.getElementsByTagNameNS(W, 'body')[0].firstElementChild;
+        for (const id of usedMedia) {
+            const m = window.TITLE_DATA.media[id];
+            if (!m) throw new Error('Отсутствует изображение титула: ' + id);
+            let name = 'media/norm_' + m.name;
+            const existing = zip.file('word/' + name);
+            if (existing && await existing.async('base64') !== m.b64) name = pkg.uniquePart(name);
+            if (!zip.file('word/' + name)) zip.file('word/' + name, m.b64, { base64: true });
+            const newId = pkg.addRel(R + '/image', name);
+            for (const e of Array.from(title.getElementsByTagName('*'))) {
+                if (e.getAttributeNS(R, 'embed') === id) e.setAttributeNS(R, 'r:embed', newId);
+            }
+            pkg.contentType('Override', '/word/' + name, m.type);
+        }
+        zip.file('word/document.xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' + new XMLSerializer().serializeToString(xmlDoc.documentElement));
+        zip.file('word/_rels/document.xml.rels', new XMLSerializer().serializeToString(pkg.relDoc));
+        zip.file('[Content_Types].xml', new XMLSerializer().serializeToString(pkg.ctDoc));
+
+        const result = await zip.generateAsync({
+            type: 'blob',
+            mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            compression: 'DEFLATE'
+        });
+        result.titleWarning = '';
+        if (titleRemoved) result.titleWarning = currentLang === 'kk'
+            ? 'Бар титул таңдалған үлгіге келтірілді.'
+            : 'Существующий титул приведён к выбранному шаблону.';
+        return result;
+    }
+
+    async function processDocument() {
+        if (!selectedFile || importPending) return;
+        if (importedDocument && importedDocument.file === selectedFile && importedDocument.analysis.state === 'uncertain') {
+            showTitleBoundary();
+            return;
+        }
+        clearTimeout(debounceTimer);
+        const token = ++runToken;
+        const file = selectedFile;
+        invalidateResult();
+        const box = document.getElementById('docx-preview-box');
+        const btn = document.getElementById('process-btn');
+        showError('');
+        btn.disabled = true;
+        btn.innerText = TEXTS[currentLang].processing;
+        try {
+            const settings = readSettings();
+            const blob = await buildDocx(file, settings, importedDocument);
+            if (token !== runToken) return;
+            if (typeof docx === 'undefined') throw new Error('Не загрузилась библиотека предпросмотра. Проверьте подключение к сети.');
+            const staging = document.createElement('div');
+            await docx.renderAsync(blob, staging, null, { className: 'docx', inWrapper: true, breakPages: true, ignoreLastRenderedPageBreak: true });
+            if (token !== runToken) return;
+            box.replaceChildren();
+            while (staging.firstChild) box.appendChild(staging.firstChild);
+            box.classList.remove('docx-preview-empty');
+            resultBlob = blob;
+            resultName = file.name.replace(/\.docx$/i, '') + '_formatted.docx';
+            fitPreview();
+            document.getElementById('document-status').textContent = blob.titleWarning;
+            document.getElementById('download-word-btn').disabled = false;
+            document.getElementById('download-pdf-btn').disabled = false;
+        } catch (e) {
+            console.error(e);
+            if (token === runToken) {
+                invalidateResult();
+                box.replaceChildren();
+                box.classList.add('docx-preview-empty');
+                showError(e.message || TEXTS[currentLang].error_docx);
+            }
+        } finally {
+            if (token === runToken) {
+                btn.disabled = !selectedFile;
+                btn.innerText = TEXTS[currentLang].process_button;
+            }
+        }
+    }
+
+    function fitPreview() {
+        const box = document.getElementById('docx-preview-box');
+        const wrap = box.querySelector('.docx-wrapper');
+        if (!wrap || box.clientWidth < 100) return;
+        const pages = box.querySelectorAll('section.docx');
+        let pageWidth = 794;
+        for (let index = 0; index < pages.length; index++) pageWidth = Math.max(pageWidth, pages[index].offsetWidth);
+        let fit = Math.min(1, (box.clientWidth - 32) / (pageWidth + 32));
+        const z = Math.max(0.1, fit) * previewZoom / 100;
+        wrap.style.setProperty('zoom', String(z), 'important');
+        document.getElementById('zoom-label').textContent = Math.round(z * 100) + '%';
+        updatePageCount();
+    }
+
+    function setPreviewMode(mode) {
+        previewMode = mode;
+        const cover = mode === 'cover';
+        document.getElementById('docx-preview-box').classList.toggle('cover-only', cover);
+        document.getElementById('cover-tab').classList.toggle('active', cover);
+        document.getElementById('document-tab').classList.toggle('active', !cover);
+        document.getElementById('cover-tab').setAttribute('aria-pressed', String(cover));
+        document.getElementById('document-tab').setAttribute('aria-pressed', String(!cover));
+        document.getElementById('docx-preview-box').scrollTop = 0;
+        fitPreview();
+    }
+
+    function changeZoom(change) {
+        previewZoom = Math.max(40, Math.min(180, previewZoom + change));
+        fitPreview();
+    }
+
+    function updatePageCount() {
+        const box = document.getElementById('docx-preview-box');
+        const pages = box.querySelectorAll('section.docx');
+        let current = pages.length ? 1 : 0;
+        if (previewMode === 'document') {
+            const top = box.getBoundingClientRect().top;
+            for (let index = 0; index < pages.length; index++) {
+                if (pages[index].getBoundingClientRect().top <= top + box.clientHeight / 2) current = index + 1;
+            }
+        }
+        document.getElementById('page-count').textContent = current + ' / ' + pages.length;
+    }
+    function resizePreviewLayout() {
+        const left = document.querySelector('.left-settings-col');
+        const right = document.querySelector('.center-main-col');
+        const top = right.getBoundingClientRect().top + window.scrollY;
+        let height = Math.max(left.offsetHeight, window.innerHeight - top - 20, 560);
+        if (window.innerWidth <= 640) height = Math.max(500, window.innerHeight * 0.75);
+        right.style.height = height + 'px';
+        fitPreview();
+    }
+    window.addEventListener('resize', resizePreviewLayout);
+
+    function downloadWord() {
+        if (!resultBlob) return;
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(resultBlob);
+        a.download = resultName;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+    }
+
+    function printPDF() {
+        if (!resultBlob) return;
+        window.print();
+    }
+
+    function clearAll() {
+        runToken++;
+        clearTimeout(debounceTimer);
+        importPending = false;
+        importedDocument = null;
+        changedFields = {};
+        hideTitleBoundary();
+        sourceLang = null;
+        importSummary = '';
+        document.getElementById('document-status').textContent = '';
+        invalidateResult();
+        selectedFile = null;
+        resultBlob = null;
+        document.getElementById('file-input').value = "";
+        for (let index = 0; index < FIELD_IDS.length; index++) {
+            document.getElementById(FIELD_IDS[index]).value = '';
+            store(FIELD_IDS[index], '');
+        }
+        setStudents([]);
+        document.getElementById('page-count').textContent = '0 / 0';
+        document.getElementById('title_year').value = '';
+        selectFormatPreset('gost');
+
+        document.getElementById('process-btn').disabled = true;
+        document.getElementById('download-word-btn').disabled = true;
+        document.getElementById('download-pdf-btn').disabled = true;
+        showError('');
+
+        const box = document.getElementById('docx-preview-box');
+        box.innerHTML = "";
+        box.classList.add('docx-preview-empty');
+        updateUI();
+    }
+
+    (function init() {
+        const savedLang = load('lang');
+        if (savedLang && TEXTS[savedLang]) {
+            currentLang = savedLang;
+            document.getElementById('lang-select').value = savedLang;
+        }
+        initFormatPresets();
+        updateUI();
+        if (window.ResizeObserver) new ResizeObserver(fitPreview).observe(document.getElementById('docx-preview-box'));
+        if (window.ResizeObserver) new ResizeObserver(resizePreviewLayout).observe(document.querySelector('.left-settings-col'));
+        resizePreviewLayout();
+
+        // Реквизиты относятся только к текущему документу.
+        document.getElementById('docx-preview-box').addEventListener('scroll', updatePageCount);
+        document.getElementById('file-input').addEventListener('click', function () { this.value = ''; });
+        const dropZone = document.getElementById('drop-zone');
+        dropZone.addEventListener('dragover', function (event) { event.preventDefault(); });
+        dropZone.addEventListener('drop', function (event) {
+            event.preventDefault();
+            handleFile({ files: event.dataTransfer.files });
+        });
+        for (let index = 0; index < FIELD_IDS.length; index++) {
+            document.getElementById(FIELD_IDS[index]).addEventListener('input', function (event) {
+                changedFields[event.target.id] = true;
+                scheduleProcess();
+            });
+        }
+        document.getElementById('document_type').addEventListener('change', function () {
+            changedFields.document_type = true;
+            scheduleProcess();
+        });
+        for (let index = 0; index < SETTING_IDS.length; index++) {
+            document.getElementById(SETTING_IDS[index]).addEventListener('input', function () {
+                document.getElementById('preset-status').textContent = currentLang === 'kk' ? 'Өзгерістер сақталмаған.' : 'Есть несохранённые изменения.';
+                scheduleProcess();
+            });
+        }
+    })();
+</script>
+
+</body>
+</html>
