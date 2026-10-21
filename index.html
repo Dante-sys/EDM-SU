@@ -1182,7 +1182,7 @@ async function preparePackage(zip) {
         instituteSelect.value = instituteValue;
 
         departmentSelect.innerHTML = '';
-        let placeholder = uiText('Сначала выберите институт', 'Алдымен институтты таңдаңыз', 'Select an institute first');
+        let placeholder = uiText('Выберите институт', 'Институтты таңдаңыз', 'Select an institute');
         if (selected) placeholder = selected.departments.length
             ? uiText('Выберите кафедру', 'Кафедраны таңдаңыз', 'Select a department')
             : uiText('Не найдено', 'Табылмады', 'Not found');
