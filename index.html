@@ -33,6 +33,7 @@ header { height:68px; padding:0 32px; display:flex; align-items:center; justify-
 .settings-heading { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:14px; }
 .title-subtitle { font-size:16px; font-weight:700; }
 .form-group { display:flex; flex-direction:column; gap:5px; margin-bottom:10px; min-width:0; }
+.form-group[hidden] { display:none; }
 .form-group label { font-size:12px; color:#4d586b; }
 .form-group input,.form-group select,.form-group textarea { width:100%; min-width:0; border:1px solid #ccd4df; border-radius:6px; padding:8px 10px; background:white; color:var(--ink); }
 .form-group textarea { resize:vertical; line-height:1.4; min-height:62px; }
@@ -1205,6 +1206,20 @@ async function preparePackage(zip) {
         if (!found) departmentSelect.add(new Option(departmentValue, departmentValue));
         departmentSelect.value = departmentValue;
         departmentSelect.disabled = !departmentValue && (!selected || !selected.departments.length);
+        updateWorkNumberField();
+    }
+
+    function usesWorkNumber(type, instituteName) {
+        if (type === 'otchet' || type === 'en_report') return false;
+        const institute = instituteByName(instituteName);
+        return !institute || institute.id !== 'military';
+    }
+
+    function updateWorkNumberField() {
+        const input = document.getElementById('title_number');
+        const visible = usesWorkNumber(document.getElementById('document_type').value, document.getElementById('title_institute').value);
+        input.parentNode.hidden = !visible;
+        input.disabled = !visible;
     }
 
     function validFormatValues(values) {
@@ -1436,6 +1451,7 @@ async function preparePackage(zip) {
             sel.appendChild(o);
         }
         if (typeVal) sel.value = typeVal;
+        updateWorkNumberField();
         if (importedDocument && importedDocument.analysis.state === 'uncertain') showTitleBoundary();
     }
 
@@ -1513,6 +1529,7 @@ async function preparePackage(zip) {
         refreshUniversityFields(institute, department);
         sourceLang = metadata.language;
         if (metadata.docTypeId && !changedFields.document_type) document.getElementById('document_type').value = metadata.docTypeId;
+        updateWorkNumberField();
     }
 
     function updateCompactLabels() {
@@ -1705,7 +1722,7 @@ async function preparePackage(zip) {
             top: num('top_margin', 20), bottom: num('bottom_margin', 20),
             indent: num('first_line_indent', 12.5),
             docTypeId: document.getElementById('document_type').value,
-            number: document.getElementById('title_number').value.trim(),
+            number: usesWorkNumber(document.getElementById('document_type').value, document.getElementById('title_institute').value) ? document.getElementById('title_number').value.trim() : '',
             topic: document.getElementById('title_topic').value.trim(),
             author: document.getElementById('title_author').value.trim(),
             students: getStudents(),
@@ -2154,7 +2171,7 @@ async function preparePackage(zip) {
                 previous = control;
             }
         }
-        if (settings.number) {
+        if (settings.number && usesWorkNumber(settings.docTypeId, settings.institute)) {
             if (!/^\d+(?:[.-]\d+)*$/.test(settings.number)) throw new Error('Номер работы должен содержать цифры.');
             const textNodes = titleParagraph.getElementsByTagNameNS(W, 't');
             if (textNodes.length) textNodes[textNodes.length - 1].textContent += ' №' + settings.number;
@@ -2553,6 +2570,7 @@ async function preparePackage(zip) {
         }
         document.getElementById('document_type').addEventListener('change', function () {
             changedFields.document_type = true;
+            updateWorkNumberField();
             scheduleProcess();
         });
         document.getElementById('title_institute').addEventListener('change', function () {
