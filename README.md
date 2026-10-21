@@ -1,2 +1,1 @@
-# EDM-Satbayev-University
-EDM for Satbayev University
+Document standards compliance check
